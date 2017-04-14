@@ -1,0 +1,13 @@
+﻿@using Project.Hub.Utils
+@model Project.Hub.Config.Entities.DownloadLink
+
+<div class="col-xs-12 col-sm-6 col-lg-4">
+    <a class="tile" href="@Url.GetDownloadLink(Model)" target="_blank">
+        <span class="glyphicon glyphicon-download-alt pull-right"></span>
+        <h4 class="text-primary">@Model.Name</h4>
+        <div class="tile-content">
+            <p>@Model.Description</p>
+        </div>
+    </a>
+</div>
+

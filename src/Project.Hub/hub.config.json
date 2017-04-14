@@ -1,0 +1,92 @@
+﻿{
+  "SystemLinks": [
+    {
+      "Name": "GitHub",
+      "Description": "Link to project's GitHub.",
+      "Url": "https://github.com/mishani0x0ef/Project.Hub"
+    },
+    {
+      "Name": "Project Issues",
+      "Description": "Link on page with active issues.",
+      "Url": "https://github.com/mishani0x0ef/Project.Hub/issues"
+    },
+    {
+      "Name": "Latest Release",
+      "Description": "Link on page with prject releases.",
+      "Url": "https://github.com/mishani0x0ef/Project.Hub/releases"
+    }
+  ],
+  "Environments": [
+    {
+      "Name": "Testing",
+      "Description": "Testing environment.",
+
+      "Sites": [
+        {
+          "Name": "GitHub link",
+          "Description": "Could be link on any website. Click cause redirect.",
+          "Url": "https://github.com"
+        }
+      ],
+
+      "Downloads": [
+        {
+          "Name": "Download by link",
+          "Description": "Download file using web link to this file.",
+          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf"
+        },
+        {
+          "Name": "Download from file system",
+          "Description": "Download file from file system. Masks could be used to find file.",
+          "Mode": "FileSystem",
+          "DownloadPath": "C:\\temp\\Android\\app-dev-*.apk"
+        },
+        {
+          "Name": "Download remote desktop file",
+          "Description": "Link on *.rdp file that contain data about some remote connection.",
+          "Type": "RemoteDesktop",
+          "Mode": "FileSystem",
+          "DownloadPath": "C:\\temp\\testEnvirnment.rdp"
+        }
+      ],
+
+      "Services": [
+        {
+          "Name": "Web Service (API) link",
+          "Description": "Link any services and APIs used by your system.",
+          "Url": "https://developer.github.com/v3/"
+        }
+      ]
+
+    },
+    {
+      "Name": "Production",
+      "Description": "Production environment.",
+
+      "Sites": [
+        {
+          "Name": "GitHub link",
+          "Description": "Could be link on any website. Click cause redirect.",
+          "Url": "https://github.com"
+        }
+      ],
+
+      "Downloads": [
+        {
+          "Name": "Download by link",
+          "Description": "Download file using web link to this file.",
+          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf"
+        }
+      ],
+
+      "Services": [
+        {
+          "Name": "Web Service (API) link",
+          "Description": "Link any services and APIs used by your system.",
+          "Url": "https://developer.github.com/v3/"
+        }
+      ]
+
+    }
+  ]
+}

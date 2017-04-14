@@ -1,0 +1,12 @@
+﻿@model Project.Hub.Config.Entities.BaseConfig
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>@Model.Name</h2>
+        <div class="header-underline underline-lg"></div>
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <p class="lead">@Model.Description</p>
+        }
+    </div>
+</div>
