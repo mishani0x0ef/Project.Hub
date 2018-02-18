@@ -21,10 +21,4 @@
 </div>
 
 @Html.Partial("_SectionHeader", new BaseConfig("General Links", "General links to services that not related to environments."))
-
-<div class="row">
-    @foreach (var link in Model.SystemLinks)
-    {
-        @Html.Partial("_LinkTile", link)
-    }
-</div>
+@Html.Partial("_LinksPanel", Model.SystemLinks)
