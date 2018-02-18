@@ -1,8 +1,21 @@
-﻿namespace Project.Hub.Config.Entities
+﻿using Project.Hub.Config.Util;
+
+namespace Project.Hub.Config.Entities
 {
     public class SiteLink : BaseConfig
     {
         public string Url { get; set; }
+
+        public bool ShowFavicon { get; set; }
+
+        public string Favicon
+        {
+            get
+            {
+                UriUtil.TryGetFavicon(Url, out var faviconUrl);
+                return faviconUrl;
+            }
+        }
 
         public SiteLink()
         {
