@@ -202,6 +202,7 @@
     <Content Include="Views\Shared\_SectionHeader.cshtml" />
     <Content Include="Views\Shared\_LinksPanel.cshtml" />
     <Content Include="Views\Shared\_DownloadsPanel.cshtml" />
+    <Content Include="Views\Shared\_EnvironmentTile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
