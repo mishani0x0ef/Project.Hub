@@ -55,6 +55,7 @@
     <Compile Include="Providers\StaticConfigurationProvider.cs" />
     <Compile Include="Util\ConfigurationExtension.cs" />
     <Compile Include="Util\FileUtil.cs" />
+    <Compile Include="Util\UriUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

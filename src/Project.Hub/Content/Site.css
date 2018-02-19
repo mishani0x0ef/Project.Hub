@@ -94,6 +94,12 @@ a.list-panel-item:hover {
     cursor: pointer;
 }
 
+.list-panel-item .list-panel-item-icon {
+    height: 22px;
+    width: 22px;
+    margin-right: 6px;
+}
+
 a.tile:hover {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 8px 12px 0 rgba(0,0,0,0.12);
     -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 8px 12px 0 rgba(0,0,0,0.12);

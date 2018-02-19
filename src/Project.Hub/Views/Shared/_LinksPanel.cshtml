@@ -19,12 +19,19 @@
                 @foreach (var site in Model.OrderBy(s => s.Name))
                 {
                     <a class="list-panel-item col-xs-12" href="@site.Url" target="_blank">
-                        <div class="col-xs-4 col-sm-3">
+                        <div class="col-xs-12 col-sm-3">
+                            @if (!site.ShowFavicon || string.IsNullOrEmpty(site.Favicon))
+                            {
+                                <span class="glyphicon glyphicon-link"></span>
+                            }
+                            else
+                            {
+                                <img class="list-panel-item-icon" src="@site.Favicon" alt="icon" />
+                            } 
                             <span>@site.Name</span>
                         </div>
-                        <div class="col-xs-8 col-sm-9">
-                            <span class="text-light">@site.Description</span>
-                            <span class="pull-right glyphicon glyphicon-link"></span>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="text-light">@site.Description</span>                            
                         </div>
                     </a>
                 }

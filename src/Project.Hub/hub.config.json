@@ -3,17 +3,20 @@
     {
       "Name": "GitHub",
       "Description": "Link to project's GitHub.",
-      "Url": "https://github.com/mishani0x0ef/Project.Hub"
+      "Url": "https://github.com/mishani0x0ef/Project.Hub",
+      "ShowFavicon":  true
     },
     {
       "Name": "Project Issues",
       "Description": "Link on page with active issues.",
-      "Url": "https://github.com/mishani0x0ef/Project.Hub/issues"
+      "Url": "https://github.com/mishani0x0ef/Project.Hub/issues",
+      "ShowFavicon": true
     },
     {
       "Name": "Latest Release",
       "Description": "Link on page with prject releases.",
-      "Url": "https://github.com/mishani0x0ef/Project.Hub/releases"
+      "Url": "https://github.com/mishani0x0ef/Project.Hub/releases",
+      "ShowFavicon": true
     }
   ],
   "Environments": [
