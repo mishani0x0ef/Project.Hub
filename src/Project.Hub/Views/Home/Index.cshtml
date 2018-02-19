@@ -1,8 +1,12 @@
-﻿@using Project.Hub.Config.Entities
-@using Project.Hub.Settings
+﻿@using Microsoft.Extensions.Options;
+@using Project.Hub.Config.Entities
+@using Project.Hub.Settings;
+
+@inject IOptions<AppConfiguration>  AppConfiguration
+
 @model Configuration
 @{
-    ViewBag.Title = AppSettings.Instance.AppName;
+    ViewData["Title"] = AppConfiguration.Value.AppDisplayName;
 }
 
 @Html.Partial("_SectionHeader", new BaseConfig("Environments", "Select environment which you want to explore."))

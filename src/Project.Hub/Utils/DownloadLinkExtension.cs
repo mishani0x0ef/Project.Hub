@@ -1,17 +1,24 @@
 ﻿using System;
-using System.Web.Mvc;
 using Project.Hub.Config.Entities;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Project.Hub.Utils
 {
     public static class DownloadLinkExtension
     {
-        public static string GetDownloadLink(this UrlHelper helper, DownloadLink link)
+        public static string GetDownloadLink(this IUrlHelper helper, DownloadLink link)
         {
             switch (link.Mode)
             {
                 case DownloadMode.FileSystem:
-                    return helper.Action("Download", "Shared", new {path = link.DownloadPath});
+                    var action = new UrlActionContext
+                    {
+                        Action = "Download",
+                        Controller = "Shared",
+                        Values = new { path = link.DownloadPath }
+                    };
+                    return helper.Action(action);
                 default:
                     return link.DownloadPath.IndexOf("://", StringComparison.Ordinal) > -1
                         ? link.DownloadPath

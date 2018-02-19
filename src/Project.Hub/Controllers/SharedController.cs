@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Project.Hub.Controllers
 {
@@ -11,17 +11,17 @@ namespace Project.Hub.Controllers
     {
         private readonly IConfigurationProvider _provider;
 
-        public SharedController()
+        public SharedController(IConfigurationProvider provider)
         {
-            _provider = ServicesFactory.Instance.GetConfigurationProvider();
+            _provider = provider;
         }
 
-        public ActionResult Download(string path)
+        public IActionResult Download(string path)
         {
             var config = _provider.GetConfig();
             var download = config.GetDownloadLink(path);
 
-            if(download == null)
+            if (download == null)
                 throw new FileNotFoundException();
 
             var file = GetLatestFile(path);

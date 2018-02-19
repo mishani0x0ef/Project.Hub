@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using System.Web.Script.Serialization;
 using Project.Hub.Config.Entities;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
 using System;
+using Newtonsoft.Json;
 
 namespace Project.Hub.Config.Providers
 {
@@ -14,9 +14,9 @@ namespace Project.Hub.Config.Providers
         private DateTime lastConfigReload = DateTime.MinValue;
         private Configuration config = new Configuration();
 
-        public JsonConfigurationProvider(string configPath)
+        public JsonConfigurationProvider(IConfigPathResolver configPathResolver)
         {
-            _configPath = configPath;
+            _configPath = configPathResolver.ConfigPath;
         }
 
         public Configuration GetConfig()
@@ -27,9 +27,8 @@ namespace Project.Hub.Config.Providers
             {
                 lastConfigReload = DateTime.Now;
 
-                var serializer = new JavaScriptSerializer();
                 var jsonConfig = File.ReadAllText(_configPath);
-                config = serializer.Deserialize<Configuration>(jsonConfig);
+                config = JsonConvert.DeserializeObject<Configuration>(jsonConfig);
             }
 
             return config;

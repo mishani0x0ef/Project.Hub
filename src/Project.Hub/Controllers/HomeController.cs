@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Project.Hub.Models;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
 
@@ -8,21 +10,26 @@ namespace Project.Hub.Controllers
     {
         private readonly IConfigurationProvider _provider;
 
-        public HomeController()
+        public HomeController(IConfigurationProvider provider)
         {
-            _provider = ServicesFactory.Instance.GetConfigurationProvider();
+            _provider = provider;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(_provider.GetConfig());
         }
 
-        public ActionResult Environment(string id)
+        public IActionResult Environment(string id)
         {
             var config = _provider.GetConfig();
             var environment = config.GetEnvironment(id);
             return View(environment);
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

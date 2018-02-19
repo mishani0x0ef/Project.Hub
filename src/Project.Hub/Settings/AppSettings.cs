@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Web.Hosting;
+﻿using System.Web;
 
 namespace Project.Hub.Settings
 {
@@ -22,7 +21,7 @@ namespace Project.Hub.Settings
             }
         }
 
-        public string AppName => ConfigurationManager.AppSettings["appDisplayName"];
-        public string ConfigJsonPath => HostingEnvironment.MapPath(ConfigurationManager.AppSettings["configPath"]);
+        public string AppName => Configuration.GetSection("AppConfiguration")["AppDisplayName"];
+        public string ConfigJsonPath => Configuration.GetSection("AppConfiguration")["ConfigPath"]);
     }
 }

@@ -1,2 +1,8 @@
 language: csharp
-solution: ./src/Project.Hub.sln
+solution: Project.Hub.sln
+mono: none
+dotnet: 2.1.4
+script:
+  - cd src
+  - dotnet restore
+  - dotnet build -c Release
