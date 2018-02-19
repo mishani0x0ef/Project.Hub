@@ -17,10 +17,6 @@ namespace Project.Hub
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.paper.css",
-                      "~/Content/site.css"));
         }
     }
 }

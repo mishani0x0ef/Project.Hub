@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Web.Mvc;
 using Project.Hub.Config.Entities;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Project.Hub.Utils
 {
@@ -11,7 +11,13 @@ namespace Project.Hub.Utils
             switch (link.Mode)
             {
                 case DownloadMode.FileSystem:
-                    return helper.Action("Download", "Shared", new {path = link.DownloadPath});
+                    var action = new UrlActionContext
+                    {
+                        Action = "Download",
+                        Controller = "Shared",
+                        Values = new { path = link.DownloadPath }
+                    };
+                    return helper.Action(action);
                 default:
                     return link.DownloadPath.IndexOf("://", StringComparison.Ordinal) > -1
                         ? link.DownloadPath

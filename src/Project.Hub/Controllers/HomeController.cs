@@ -1,28 +1,37 @@
-﻿using System.Web.Mvc;
-using Project.Hub.Config.Interfaces;
-using Project.Hub.Config.Util;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Project.Hub.Models;
 
 namespace Project.Hub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfigurationProvider _provider;
-
-        public HomeController()
+        public IActionResult Index()
         {
-            _provider = ServicesFactory.Instance.GetConfigurationProvider();
+            return View();
         }
 
-        public ActionResult Index()
+        public IActionResult About()
         {
-            return View(_provider.GetConfig());
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
         }
 
-        public ActionResult Environment(string id)
+        public IActionResult Contact()
         {
-            var config = _provider.GetConfig();
-            var environment = config.GetEnvironment(id);
-            return View(environment);
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

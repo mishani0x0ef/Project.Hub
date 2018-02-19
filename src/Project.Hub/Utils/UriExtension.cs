@@ -1,5 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc.Routing;
+using System;
 
 namespace Project.Hub.Utils
 {
@@ -7,11 +8,13 @@ namespace Project.Hub.Utils
     {
         public static string AbsoluteUri(this UrlHelper urlHelper, string contentPath)
         {
-            var requestUrl = urlHelper.RequestContext.HttpContext.Request.Url;
-            if (requestUrl == null)
-                throw new NullReferenceException();
+            var requestUrl = urlHelper.ActionContext.HttpContext.Request.GetEncodedUrl();
+            if (string.IsNullOrEmpty(requestUrl))
+                throw new ArgumentNullException(nameof(urlHelper), "Request URL is not defined.");
 
-            return $"{requestUrl.Scheme}://{requestUrl.Authority}{urlHelper.Content(contentPath)}";
+            var url = new Uri(requestUrl);
+
+            return $"{url.Scheme}://{url.Authority}{urlHelper.Content(contentPath)}";
         }
     }
 }
