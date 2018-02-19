@@ -207,7 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project.Hub.Config\Project.Hub.Config.csproj">
-      <Project>{0F5AF792-0861-4024-AF70-36A6E8C559C9}</Project>
+      <Project>{357BEE56-EC78-4101-BE8D-A1EEF18E4630}</Project>
       <Name>Project.Hub.Config</Name>
     </ProjectReference>
   </ItemGroup>
