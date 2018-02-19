@@ -1,12 +1,13 @@
 ﻿using System;
 using Project.Hub.Config.Entities;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Project.Hub.Utils
 {
     public static class DownloadLinkExtension
     {
-        public static string GetDownloadLink(this UrlHelper helper, DownloadLink link)
+        public static string GetDownloadLink(this IUrlHelper helper, DownloadLink link)
         {
             switch (link.Mode)
             {

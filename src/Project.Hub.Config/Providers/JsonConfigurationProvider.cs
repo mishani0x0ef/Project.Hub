@@ -14,9 +14,9 @@ namespace Project.Hub.Config.Providers
         private DateTime lastConfigReload = DateTime.MinValue;
         private Configuration config = new Configuration();
 
-        public JsonConfigurationProvider(string configPath)
+        public JsonConfigurationProvider(IConfigPathResolver configPathResolver)
         {
-            _configPath = configPath;
+            _configPath = configPathResolver.ConfigPath;
         }
 
         public Configuration GetConfig()

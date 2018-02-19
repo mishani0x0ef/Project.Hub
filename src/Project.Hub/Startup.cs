@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Project.Hub.Config.Interfaces;
 using Project.Hub.Settings;
 
 namespace Project.Hub
@@ -18,8 +19,8 @@ namespace Project.Hub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureDependencyInjection(services);
             services.AddMvc();
-
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
         }
 
@@ -44,6 +45,13 @@ namespace Project.Hub
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void ConfigureDependencyInjection(IServiceCollection services)
+        {
+            services
+                .AddSingleton<IConfigPathResolver, ConfigResolver>()
+                .AddSingleton<Config.Interfaces.IConfigurationProvider, Config.Providers.JsonConfigurationProvider>();
         }
     }
 }

@@ -1,32 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Project.Hub.Models;
+using Project.Hub.Config.Interfaces;
+using Project.Hub.Config.Util;
 
 namespace Project.Hub.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IConfigurationProvider _provider;
+
+        public HomeController(IConfigurationProvider provider)
+        {
+            _provider = provider;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_provider.GetConfig());
         }
 
-        public IActionResult About()
+        public IActionResult Environment(string id)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var config = _provider.GetConfig();
+            var environment = config.GetEnvironment(id);
+            return View(environment);
         }
 
         public IActionResult Error()
