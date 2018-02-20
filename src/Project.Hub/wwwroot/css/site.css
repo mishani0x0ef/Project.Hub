@@ -57,18 +57,16 @@ textarea {
 }
 
 .tile {
-    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
     padding: 8px 12px;
     margin: 6px 0 12px 0;
 }
 
-.tile-header {
-    margin-bottom: 24px;
-}
-
 .tile-content {
     max-width: 300px;
-    height: 85px;
 }
 
 a.tile,
@@ -79,7 +77,6 @@ a.list-panel-item,
 a.list-panel-item:hover,
 a.list-panel-item:active, 
 a.list-panel-item:visited {
-    height: 100%;
     display: block;
     color: inherit;
     text-decoration: none;
