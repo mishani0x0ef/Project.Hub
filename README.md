@@ -96,8 +96,8 @@ Type that describe link to file for download.
 | Name | (required) _string_ | Short display name of file. |
 | DownloadPath| (required) _string_ | URL to file or path in file system. <ul><li>Network shares supported</li><li>Supported version serch patterns (e.g _"d:\\builds\\Android\\app-v-*.*.*.apk"_)</li></ul> |
 | Description | (optional) _string_ | Textual description with details about a file. |
-| Mode | (optional) _"Direct"_ (default) \| _"FileSystem"_ | Download mode to use. <ul><li>Direct - when download by redirect to web-link</li><li>FileSystem - when required download actual file from disk or network share.</li></ul> |
-| Type | (optional) _"Application"_ (default) \| _"RemoteDesktop"_ | Type of download link. User _RemoteDesktop_ if file is remote connection configuration file for some of your service (quite specific case). |
+| Mode | (optional) _"Direct"_ (default) \| _"FileSystem"_ | Download mode to use. <ul><li>Direct - when download by redirect to web-link</li><li>FileSystem - when download of actual file from disk or network share required.</li></ul> |
+| Type | (optional) _"Application"_ (default) \| _"RemoteDesktop"_ | Type of download link. User _RemoteDesktop_ if file is remote connection configuration file (quite specific case). |
 
 _Notes:_
 
