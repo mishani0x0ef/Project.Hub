@@ -9,6 +9,7 @@ script:
 
 before_deploy:
   - cd ../dist
+  - ls -als
   - zip project.hub.zip
   - cd ..
 
