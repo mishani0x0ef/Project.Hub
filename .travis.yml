@@ -8,7 +8,8 @@ script:
   - dotnet publish ./Project.Hub/Project.Hub.csproj -c Release -o "../../dist/"
 
 before_deploy:
-  - ../.build/prepare-zip.sh
+  - cd ../.build
+  - ./prepare-zip.sh
 
 deploy:
   skip_cleanup: true
@@ -19,4 +20,4 @@ deploy:
   app: "project.hub"
   env: "projecthub-env"
   bucket_name: "projecthub-env"
-  zip_file: "../dist/project.hub.zip"
+  zip_file: "./dist/project.hub.zip"
