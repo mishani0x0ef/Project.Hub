@@ -3,6 +3,8 @@
 # Project.Hub
 Simple project that allow to describe useful links and downloads for your project using configuration file.
 
+[☛EXAMPLE SITE☚](http://projecthub-env.us-east-2.elasticbeanstalk.com/)
+
 ## Setup
 
 _Project.Hub_ is a web application that could be hosted on any hosting environment which is supported by [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/).
