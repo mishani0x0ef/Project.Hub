@@ -7,14 +7,19 @@ namespace Project.Hub.Config.Providers.VersionResolvers
 {
     internal class AssemblyVersionResolver : IVersionResolver
     {
-        private IVersionResolver FallBackResolver = new DefaultVersionResolver();
+        private readonly IVersionResolver _fallBackResolver;
+
+        public AssemblyVersionResolver(IVersionResolver fallback)
+        {
+            _fallBackResolver = fallback;
+        }
 
         public async Task<string> GetVersion(VersionOptions options)
         {
             var path = options.Path;
             if (!File.Exists(path))
             {
-                return await FallBackResolver.GetVersion(options);
+                return await _fallBackResolver.GetVersion(options);
             }
 
             try
@@ -26,7 +31,7 @@ namespace Project.Hub.Config.Providers.VersionResolvers
             catch
             {
                 // todo: provide logging of error. MR
-                return await FallBackResolver.GetVersion(options);
+                return await _fallBackResolver.GetVersion(options);
             }
         }
     }
