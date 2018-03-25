@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Hub.Config", "Project.Hub.Config\Project.Hub.Config.csproj", "{357BEE56-EC78-4101-BE8D-A1EEF18E4630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Hub", "Project.Hub\Project.Hub.csproj", "{67E68E53-8B58-4F33-B3F0-4A9D8B97726E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Hub", "Project.Hub\Project.Hub.csproj", "{67E68E53-8B58-4F33-B3F0-4A9D8B97726E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
