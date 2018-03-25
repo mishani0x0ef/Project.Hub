@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Project.Hub.Models;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
+using System.Threading.Tasks;
 
 namespace Project.Hub.Controllers
 {
@@ -15,14 +16,15 @@ namespace Project.Hub.Controllers
             _provider = provider;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_provider.GetConfig());
+            var config = await _provider.GetConfig();
+            return View(config);
         }
 
-        public IActionResult Environment(string id)
+        public async Task<IActionResult> Environment(string id)
         {
-            var config = _provider.GetConfig();
+            var config = await _provider.GetConfig();
             var environment = config.GetEnvironment(id);
             return View(environment);
         }

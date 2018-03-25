@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Project.Hub.Config.Entities;
 using Project.Hub.Config.Interfaces;
+using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Providers
 {
@@ -62,9 +63,9 @@ namespace Project.Hub.Config.Providers
             };
         }
 
-        public Configuration GetConfig()
+        public Task<Configuration> GetConfig()
         {
-            return _config;
+            return Task.FromResult(_config);
         }
     }
 }

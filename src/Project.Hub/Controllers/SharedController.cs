@@ -4,6 +4,7 @@ using Project.Hub.Config.Util;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Project.Hub.Controllers
 {
@@ -16,9 +17,9 @@ namespace Project.Hub.Controllers
             _provider = provider;
         }
 
-        public IActionResult Download(string path)
+        public async Task<IActionResult> Download(string path)
         {
-            var config = _provider.GetConfig();
+            var config = await _provider.GetConfig();
             var download = config.GetDownloadLink(path);
 
             if (download == null)

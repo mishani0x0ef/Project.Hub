@@ -37,8 +37,7 @@ namespace Project.Hub.Config.Providers
 
         private async Task<VersionsModel> ReloadVersions()
         {
-            // todo: make config provider async. MR
-            var config = _configProvider.GetConfig();
+            var config = await _configProvider.GetConfig();
 
             var environments = config.Environments.Select(e => e.Name);
             var components = await GetComponents(config);

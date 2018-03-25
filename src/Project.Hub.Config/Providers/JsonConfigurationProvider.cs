@@ -4,6 +4,7 @@ using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
 using System;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Providers
 {
@@ -19,7 +20,7 @@ namespace Project.Hub.Config.Providers
             _configPath = configPathResolver.ConfigPath;
         }
 
-        public Configuration GetConfig()
+        public async Task<Configuration> GetConfig()
         {
             var configChanged = FileUtil.IsFileChangedSince(lastConfigReload, _configPath);
 
@@ -27,7 +28,13 @@ namespace Project.Hub.Config.Providers
             {
                 lastConfigReload = DateTime.Now;
 
-                var jsonConfig = File.ReadAllText(_configPath);
+                string jsonConfig;
+
+                using(var reader = File.OpenText(_configPath))
+                {
+                    jsonConfig = await reader.ReadToEndAsync();
+                }
+
                 config = JsonConvert.DeserializeObject<Configuration>(jsonConfig);
             }
 
