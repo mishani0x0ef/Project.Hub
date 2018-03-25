@@ -2,6 +2,7 @@
 
 # Project.Hub
 Simple project that allow to describe useful links and downloads for your project using configuration file.
+[EXAMPLE SITE](http://projecthub-env.us-east-2.elasticbeanstalk.com/)
 
 ## Setup
 
