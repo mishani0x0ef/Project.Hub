@@ -8,8 +8,9 @@ script:
   - dotnet publish ./Project.Hub/Project.Hub.csproj -c Release -o "../../dist/"
 
 before_deploy:
-  - cd ../.build
-  - ./prepare-zip.sh
+  - cd ../dist
+  - zip project.hub.zip
+  - cd ..
 
 deploy:
   skip_cleanup: true
