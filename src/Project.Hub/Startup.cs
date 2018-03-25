@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.Hub.Config.Interfaces;
+using Project.Hub.Config.Providers;
 using Project.Hub.Settings;
 
 namespace Project.Hub
@@ -51,7 +52,9 @@ namespace Project.Hub
         {
             services
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
-                .AddSingleton<Config.Interfaces.IConfigurationProvider, Config.Providers.JsonConfigurationProvider>();
+                .AddSingleton<Config.Interfaces.IConfigurationProvider, Config.Providers.JsonConfigurationProvider>()
+                .AddSingleton<IVersionProvider, StaticVersionProvider>()
+                ;
         }
     }
 }

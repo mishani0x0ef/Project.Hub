@@ -1,9 +1,14 @@
-﻿<div class="panel panel-warning">
+﻿@model System.DateTimeOffset
+
+<div class="panel panel-warning">
     <div class="panel-heading">
         <h3 class="panel-title">Warning</h3>
     </div>
-    <div class="panel-body">
-        <p>Versions updated regulary. It could take <strong>up to 1 hour</strong> for update.</p>
+    <div class="panel-body text-justify">
+        <p>
+            <span>Versions last updated at <strong>@Model.ToString("dd MMM hh:mm")</strong>.</span>
+            <span>Info updating regulary. It could take <strong>up to 1 hour</strong> for update.</span>
+        </p>
         <p>Please, be patient and enjoy your day 🥂.</p>
     </div>
 </div>

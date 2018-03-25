@@ -1,0 +1,31 @@
+﻿@using Project.Hub.Config.Util
+@model Project.Hub.Config.Entities.Version.VersionsModel
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <span>Components</span>
+                    <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                </th>
+                @foreach(var env in Model.Environments)
+                {
+                    <th>@env</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var component in Model.Components.OrderBy(c => c.Name))
+            {
+                <tr>
+                    <td>@component.Name</td>
+                    @foreach (var env in Model.Environments)
+                    {
+                        <td>@component.GetEnvironmentVersionOrDefault(env).Version</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

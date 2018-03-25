@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Providers\" />
-    <Folder Include="Util\" />
+    <Compile Remove="Entities\ComponentVersion.cs" />
   </ItemGroup>
 
   <ItemGroup>
