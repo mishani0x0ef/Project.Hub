@@ -24,8 +24,7 @@ namespace Project.Hub.Config.Providers.VersionResolvers
             switch (component.VersionOptions.Type)
             {
                 case VersionType.Assembly:
-                    // todo: create and use other resolver. MR
-                    return GetOrCreate<DefaultVersionResolver>();
+                    return GetOrCreate<AssemblyVersionResolver>();
                 default:
                     return GetOrCreate<DefaultVersionResolver>();
             }

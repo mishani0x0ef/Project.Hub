@@ -3,7 +3,7 @@ using Project.Hub.Config.Entities.Version;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
-    public class DefaultVersionResolver : IVersionResolver
+    internal class DefaultVersionResolver : IVersionResolver
     {
         public Task<string> GetVersion(VersionOptions options)
         {
