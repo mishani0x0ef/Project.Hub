@@ -11,7 +11,9 @@
                 </th>
                 @foreach(var env in Model.Environments)
                 {
-                    <th>@env</th>
+                    <th>
+                        <a asp-controller="Home" asp-action="Environment" asp-route-id="@env">@env</a>
+                    </th>
                 }
             </tr>
         </thead>
