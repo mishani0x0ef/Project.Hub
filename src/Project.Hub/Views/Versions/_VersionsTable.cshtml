@@ -11,7 +11,7 @@
                 </th>
                 @foreach(var env in Model.Environments)
                 {
-                    <th>
+                    <th class="text-center">
                         <a asp-controller="Home" asp-action="Environment" asp-route-id="@env">@env</a>
                     </th>
                 }
@@ -24,7 +24,7 @@
                     <td>@component.Name</td>
                     @foreach (var env in Model.Environments)
                     {
-                        <td>@component.GetEnvironmentVersionOrDefault(env).Version</td>
+                        <td class="text-center">@component.GetEnvironmentVersionOrDefault(env).Version</td>
                     }
                 </tr>
             }

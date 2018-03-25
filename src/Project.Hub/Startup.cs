@@ -52,8 +52,8 @@ namespace Project.Hub
         {
             services
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
-                .AddSingleton<Config.Interfaces.IConfigurationProvider, Config.Providers.JsonConfigurationProvider>()
-                .AddSingleton<IVersionProvider, StaticVersionProvider>()
+                .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
+                .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
                 ;
         }
     }
