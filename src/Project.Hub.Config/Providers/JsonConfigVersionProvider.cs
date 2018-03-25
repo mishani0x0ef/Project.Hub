@@ -7,24 +7,32 @@ using Project.Hub.Config.Entities;
 using System;
 using Project.Hub.Config.Util;
 using Project.Hub.Config.Providers.VersionResolvers;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Project.Hub.Config.Providers
 {
     public class JsonConfigVersionProvider : IVersionProvider
     {
+        private const string CacheKey = "versions-config";
+
         private readonly IConfigurationProvider _configProvider;
         private readonly VersionResolverFactory _versionFactory;
+        private readonly IMemoryCache _cache;
 
-        public JsonConfigVersionProvider(IConfigurationProvider configProvider, VersionResolverFactory factory)
+        public JsonConfigVersionProvider(IConfigurationProvider configProvider, VersionResolverFactory factory, IMemoryCache cache)
         {
             _configProvider = configProvider;
             _versionFactory = factory;
+            _cache = cache;
         }
 
         public async Task<VersionsModel> GetVersions()
         {
-            // todo: implement time based caching. MR
-            return await ReloadVersions();
+            return await _cache.GetOrCreateAsync(CacheKey, async (entry) =>
+            {
+                entry.AbsoluteExpiration = DateTimeOffset.Now.AddHours(1);
+                return await ReloadVersions();
+            });
         }
 
         private async Task<VersionsModel> ReloadVersions()
@@ -53,11 +61,8 @@ namespace Project.Hub.Config.Providers
 
             foreach(var name in uniqComponentNames)
             {
-                var versions = new List<ComponentVersion>();
-                foreach (var env in config.Environments)
-                {
-                    versions.Add(await GetComponentVersion(name, env));
-                }
+                var versionTasks = config.Environments.Select(e => GetComponentVersion(name, e));
+                var versions = await Task.WhenAll(versionTasks.ToArray());
                 var component = new Component { Name = name, Versions = new HashSet<ComponentVersion>(versions) };
                 components.Add(component);
             }

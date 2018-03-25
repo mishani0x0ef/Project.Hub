@@ -52,6 +52,7 @@ namespace Project.Hub
         private void ConfigureDependencyInjection(IServiceCollection services)
         {
             services
+                .AddMemoryCache()
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
                 .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
                 .AddSingleton<VersionResolverFactory>()
