@@ -25,7 +25,7 @@ namespace Project.Hub.Config.Util
         /// <summary>
         /// Get all sites, downloads and services related to environment.
         /// </summary>
-        public static IEnumerable<BaseConfig> GetAllConfigs(this EnvironmentConfig environment)
+        public static IEnumerable<ComponentConfig> GetAllComponents(this EnvironmentConfig environment)
         {
             foreach (var site in environment.Sites)
             {

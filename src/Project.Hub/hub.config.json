@@ -28,7 +28,11 @@
         {
           "Name": "GitHub link",
           "Description": "Could be link on any website. Click cause redirect.",
-          "Url": "https://github.com"
+          "Url": "https://github.com",
+          "VersionOptions": {
+            "Type": "Assembly",
+            "Path":  "Project.Hub.Config.dll"
+          }
         }
       ],
 

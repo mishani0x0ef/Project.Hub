@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using Project.Hub.Config.Entities;
 using System;
 using Project.Hub.Config.Util;
+using Project.Hub.Config.Providers.VersionResolvers;
 
 namespace Project.Hub.Config.Providers
 {
     public class JsonConfigVersionProvider : IVersionProvider
     {
         private readonly IConfigurationProvider _configProvider;
+        private readonly VersionResolverFactory _versionFactory;
 
-        public JsonConfigVersionProvider(IConfigurationProvider configProvider)
+        public JsonConfigVersionProvider(IConfigurationProvider configProvider, VersionResolverFactory factory)
         {
             _configProvider = configProvider;
+            _versionFactory = factory;
         }
 
         public async Task<VersionsModel> GetVersions()
@@ -24,13 +27,13 @@ namespace Project.Hub.Config.Providers
             return await ReloadVersions();
         }
 
-        private Task<VersionsModel> ReloadVersions()
+        private async Task<VersionsModel> ReloadVersions()
         {
             // todo: make config provider async. MR
             var config = _configProvider.GetConfig();
 
             var environments = config.Environments.Select(e => e.Name);
-            var components = GetComponents(config);
+            var components = await GetComponents(config);
 
             var versions = new VersionsModel
             {
@@ -39,21 +42,26 @@ namespace Project.Hub.Config.Providers
                 LastUpdated = DateTimeOffset.Now
             };
 
-            return Task.FromResult(versions);
+            return versions;
         }
 
-        private IEnumerable<Component> GetComponents(Configuration config)
+        private async Task<IEnumerable<Component>> GetComponents(Configuration config)
         {
             var componentNames = GetComponentsNames(config);
             var uniqComponentNames = new HashSet<string>(componentNames);
+            var components = new List<Component>();
 
             foreach(var name in uniqComponentNames)
             {
-                var component = new Component { Name = name };
-                var versions = config.Environments.Select(e => GetComponentVersion(name, e));
-                component.Versions = new HashSet<ComponentVersion>(versions);
-                yield return component;
+                var versions = new List<ComponentVersion>();
+                foreach (var env in config.Environments)
+                {
+                    versions.Add(await GetComponentVersion(name, env));
+                }
+                var component = new Component { Name = name, Versions = new HashSet<ComponentVersion>(versions) };
+                components.Add(component);
             }
+            return components;
         }
 
         private IEnumerable<string> GetComponentsNames(Configuration config)
@@ -61,17 +69,20 @@ namespace Project.Hub.Config.Providers
             var names = new List<string>();
             foreach (var env in config.Environments)
             {
-                var configs = env.GetAllConfigs();
+                var configs = env.GetAllComponents();
                 names.AddRange(configs.Select(c => c.Name));
             }
             return names;
         }
 
-        private ComponentVersion GetComponentVersion(string name, EnvironmentConfig environment)
+        private async Task<ComponentVersion> GetComponentVersion(string name, EnvironmentConfig environment)
         {
-            var components = environment.GetAllConfigs();
+            var components = environment.GetAllComponents();
             var component = components.FirstOrDefault(c => c.Name == name);
-            var version = component != null ? "3.196.63" : "-";
+
+            IVersionResolver resolver = _versionFactory.GetResolver(component);
+            var version = await resolver.GetVersion(component?.VersionOptions);
+
             return new ComponentVersion(environment.Name, version);
         }
     }

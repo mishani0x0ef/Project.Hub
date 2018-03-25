@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Providers;
+using Project.Hub.Config.Providers.VersionResolvers;
 using Project.Hub.Settings;
 
 namespace Project.Hub
@@ -53,6 +54,7 @@ namespace Project.Hub
             services
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
                 .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
+                .AddSingleton<VersionResolverFactory>()
                 .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
                 ;
         }
