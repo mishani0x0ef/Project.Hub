@@ -23,7 +23,7 @@ _NOTE: last step depends on hosting environment. Current article doesn't describ
 
 Site content of _Project.Hub_ configurable over [hub.config.json](https://github.com/mishani0x0ef/Project.Hub/blob/master/src/Project.Hub/hub.config.json) file which has next structure:
 
-````
+````json
 {
   "SystemLinks": [
     {
