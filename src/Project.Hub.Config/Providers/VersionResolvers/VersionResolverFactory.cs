@@ -1,46 +1,32 @@
 ﻿using Project.Hub.Config.Entities;
 using Project.Hub.Config.Entities.Version;
-using System;
 using System.Collections.Generic;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
     public class VersionResolverFactory
     {
-        public Dictionary<Type, IVersionResolver> Resolvers { get; set; }
+        protected Dictionary<VersionType, IVersionResolver> Resolvers { get; set; }
+        protected IVersionResolver DefaultResolver { get; set; }
 
         public VersionResolverFactory()
         {
-            Resolvers = new Dictionary<Type, IVersionResolver>();
+            DefaultResolver = new DefaultVersionResolver();
+            Resolvers = new Dictionary<VersionType, IVersionResolver>
+            {
+                { VersionType.Assembly, new AssemblyVersionResolver() }
+            };
         }
 
         public IVersionResolver GetResolver(ComponentConfig component)
         {
             if (component == null || !component.IsVersionProvider)
             {
-                return GetOrCreate<DefaultVersionResolver>();
+                return DefaultResolver;
             }
 
-            switch (component.VersionOptions.Type)
-            {
-                case VersionType.Assembly:
-                    return GetOrCreate<AssemblyVersionResolver>();
-                default:
-                    return GetOrCreate<DefaultVersionResolver>();
-            }
-        }
-
-        private IVersionResolver GetOrCreate<T>() where T: IVersionResolver, new()
-        {
-            var type = typeof(T);
-            if (Resolvers.ContainsKey(type))
-            {
-                return Resolvers[type];
-            }
-
-            var resolver = new T();
-            Resolvers.Add(type, resolver);
-            return resolver;
+            var exist = Resolvers.TryGetValue(component.VersionOptions.Type, out var resolver);
+            return exist ? resolver : DefaultResolver;
         }
     }
 }
