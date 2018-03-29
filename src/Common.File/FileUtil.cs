@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
 
-namespace Project.Hub.Config.Util
+namespace Common.File
 {
     public  static class FileUtil
     {
@@ -13,7 +12,7 @@ namespace Project.Hub.Config.Util
         /// <returns></returns>
         public static bool IsFileChangedSince(DateTime date, string filePath)
         {
-            var modifiedTime = File.GetLastWriteTime(filePath);
+            var modifiedTime = System.IO.File.GetLastWriteTime(filePath);
             return modifiedTime >= date;
         }
     }

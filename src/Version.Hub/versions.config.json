@@ -1,0 +1,16 @@
+﻿{
+  "VersionConfigs": [
+    {
+      "UniqName": "WebSite",
+      "Path": "D:\\projects\\Project.Hub\\src\\Version.Hub\\bin\\Debug\\netcoreapp2.0\\Version.Hub.Config.dll"
+    },
+    {
+      "UniqName": "API",
+      "Path": "D:\\projects\\Project.Hub\\src\\Version.Hub\\bin\\Debug\\netcoreapp2.0\\Version.Hub.Config.dll"
+    },
+    {
+      "UniqName": "WinService",
+      "Path": "D:\\projects\\Project.Hub\\src\\Version.Hub\\bin\\Debug\\netcoreapp2.0\\Version.Hub.Config.dll"
+    }
+  ]
+}

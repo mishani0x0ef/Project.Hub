@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Project.Hub.Config.Entities;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Project.Hub.Config.Util
 {
@@ -18,6 +20,25 @@ namespace Project.Hub.Config.Util
             return
                 environment?.Downloads.FirstOrDefault(
                     d => string.Equals(d.Name, name, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        /// <summary>
+        /// Get all sites, downloads and services related to environment.
+        /// </summary>
+        public static IEnumerable<ComponentConfig> GetAllComponents(this EnvironmentConfig environment)
+        {
+            foreach (var site in environment.Sites)
+            {
+                yield return site;
+            }
+            foreach (var download in environment.Downloads)
+            {
+                yield return download;
+            }
+            foreach (var service in environment.Services)
+            {
+                yield return service;
+            }
         }
 
         public static DownloadLink GetDownloadLink(this Configuration config, string environmentName, string name)

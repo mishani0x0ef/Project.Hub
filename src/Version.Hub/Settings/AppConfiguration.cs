@@ -1,11 +1,10 @@
-﻿using Project.Hub.Config.Interfaces;
+﻿using Version.Hub.Config;
 
-namespace Project.Hub.Settings
+namespace Version.Hub.Settings
 {
     public class AppConfiguration : IConfigPathResolver
     {
         public string AppDisplayName { get; set; }
         public string ConfigPath { get; set; }
-        public int VersionsCacheExpirationInHours { get; set; }
     }
 }

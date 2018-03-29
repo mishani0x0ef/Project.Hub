@@ -2,7 +2,7 @@
 
 namespace Project.Hub.Config.Entities
 {
-    public class SiteLink : BaseConfig
+    public class SiteLink : ComponentConfig
     {
         public string Url { get; set; }
 

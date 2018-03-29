@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.Hub.Config.Interfaces;
+using Project.Hub.Config.Providers;
+using Project.Hub.Config.Providers.VersionResolvers;
 using Project.Hub.Settings;
 
 namespace Project.Hub
@@ -50,8 +52,13 @@ namespace Project.Hub
         private void ConfigureDependencyInjection(IServiceCollection services)
         {
             services
+                .AddMemoryCache()
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
-                .AddSingleton<Config.Interfaces.IConfigurationProvider, Config.Providers.JsonConfigurationProvider>();
+                .AddSingleton<ICacheExpirationProvider, ConfigResolver>()
+                .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
+                .AddSingleton<VersionResolverFactory>()
+                .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
+                ;
         }
     }
 }

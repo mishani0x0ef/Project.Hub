@@ -1,6 +1,6 @@
 ﻿namespace Project.Hub.Config.Entities
 {
-    public class DownloadLink : BaseConfig
+    public class DownloadLink : ComponentConfig
     {
         public DownloadMode Mode { get; set; }
         public DownloadType Type { get; set; }

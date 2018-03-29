@@ -28,7 +28,11 @@
         {
           "Name": "GitHub link",
           "Description": "Could be link on any website. Click cause redirect.",
-          "Url": "https://github.com"
+          "Url": "https://github.com",
+          "VersionOptions": {
+            "Type": "Assembly",
+            "Path":  "Project.Hub.Config.dll"
+          }
         }
       ],
 
@@ -42,7 +46,11 @@
           "Name": "Download from file system",
           "Description": "Download file from file system. Masks could be used to find file.",
           "Mode": "FileSystem",
-          "DownloadPath": "C:\\temp\\Android\\app-dev-*.apk"
+          "DownloadPath": "C:\\temp\\Android\\app-dev-*.apk",
+          "VersionOptions": {
+            "Type": "VersionHub",
+            "Path": "http://localhost:54635/api/version/winService"
+          }
         },
         {
           "Name": "Download remote desktop file",
