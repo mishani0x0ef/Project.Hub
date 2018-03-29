@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Project.Hub.Config.Entities.Version;
-using System.IO;
-using System.Reflection;
+using Version.Util;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
@@ -17,20 +16,13 @@ namespace Project.Hub.Config.Providers.VersionResolvers
         public async Task<string> GetVersion(VersionOptions options)
         {
             var path = options.Path;
-            if (!File.Exists(path))
-            {
-                return await _fallBackResolver.GetVersion(options);
-            }
 
-            try
+            if(AssemblyUtils.TryGetVersion(path, out var version))
             {
-                var assembly = Assembly.LoadFile(path);
-                var version = assembly.GetName().Version.ToString();
                 return version;
             }
-            catch
+            else
             {
-                // todo: provide logging of error. MR
                 return await _fallBackResolver.GetVersion(options);
             }
         }
