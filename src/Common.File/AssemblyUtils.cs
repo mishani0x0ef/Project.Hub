@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Version.Util
+namespace Common.File
 {
     public static class AssemblyUtils
     {

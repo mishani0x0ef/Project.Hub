@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Version.Hub.Filters;
 using Version.Hub.Config;
 using Version.Hub.Config.Providers;
+using Version.Hub.Settings;
 
 namespace Version.Hub
 {
@@ -24,6 +25,7 @@ namespace Version.Hub
             {
                 config.Filters.Add<NotFoundErrorFillter>();
             });
+            services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -40,7 +42,9 @@ namespace Version.Hub
         {
             services
                 .AddMemoryCache()
-                .AddSingleton<IVersionProvider, StaticVersionProvider>()
+                .AddSingleton<IConfigPathResolver, ConfigResolver>()
+                .AddSingleton<IConfigProvider, JsonConfigProvider>()
+                .AddSingleton<IVersionProvider, AssemblyVersionProvider>()
                 ;
         }
     }

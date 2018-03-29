@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Project.Hub.Config.Entities.Version;
-using Version.Util;
+using Common.File;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
