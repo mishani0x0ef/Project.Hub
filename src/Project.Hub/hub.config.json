@@ -46,7 +46,11 @@
           "Name": "Download from file system",
           "Description": "Download file from file system. Masks could be used to find file.",
           "Mode": "FileSystem",
-          "DownloadPath": "C:\\temp\\Android\\app-dev-*.apk"
+          "DownloadPath": "C:\\temp\\Android\\app-dev-*.apk",
+          "VersionOptions": {
+            "Type": "VersionHub",
+            "Path": "http://localhost:54635/api/version/winService"
+          }
         },
         {
           "Name": "Download remote desktop file",

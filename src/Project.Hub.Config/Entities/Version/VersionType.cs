@@ -6,5 +6,10 @@
         /// .NET assembly.
         /// </summary>
         Assembly = 0,
+
+        /// <summary>
+        /// Resolve version using proxy Version.Hub deployed on remote server.
+        /// </summary>
+        VersionHub,
     }
 }
