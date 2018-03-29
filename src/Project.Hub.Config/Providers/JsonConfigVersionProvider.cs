@@ -16,12 +16,17 @@ namespace Project.Hub.Config.Providers
         private const string CacheKey = "versions-config";
 
         private readonly IConfigurationProvider _configProvider;
+        private readonly ICacheExpirationProvider _cacheExpirationProvider;
         private readonly VersionResolverFactory _versionFactory;
         private readonly IMemoryCache _cache;
 
-        public JsonConfigVersionProvider(IConfigurationProvider configProvider, VersionResolverFactory factory, IMemoryCache cache)
+        public JsonConfigVersionProvider(IConfigurationProvider configProvider,
+            ICacheExpirationProvider cacheExpirationProvider,
+            VersionResolverFactory factory, 
+            IMemoryCache cache)
         {
             _configProvider = configProvider;
+            _cacheExpirationProvider = cacheExpirationProvider;
             _versionFactory = factory;
             _cache = cache;
         }
@@ -30,7 +35,7 @@ namespace Project.Hub.Config.Providers
         {
             return await _cache.GetOrCreateAsync(CacheKey, async (entry) =>
             {
-                entry.AbsoluteExpiration = DateTimeOffset.Now.AddHours(1);
+                entry.AbsoluteExpiration = _cacheExpirationProvider.GetExpiration();
                 return await ReloadVersions();
             });
         }

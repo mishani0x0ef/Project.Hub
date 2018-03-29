@@ -1,4 +1,7 @@
-﻿@model System.DateTimeOffset
+﻿@using Microsoft.Extensions.Options;
+@using Project.Hub.Settings;
+@inject IOptions<AppConfiguration> AppConfiguration
+@model System.DateTimeOffset
 
 <div class="panel panel-warning">
     <div class="panel-heading">
@@ -7,7 +10,9 @@
     <div class="panel-body text-justify">
         <p>
             <span>Versions last updated at <strong>@Model.ToString("dd MMM HH:mm")</strong>.</span>
-            <span>Info updating regulary. It could take <strong>up to 1 hour</strong> for update.</span>
+            <span>Info updating regulary. It could take 
+            <strong>up to @AppConfiguration.Value.VersionsCacheExpirationInHours hours</strong> 
+            for update.</span>
         </p>
         <p>Please, be patient and enjoy your day 🥂.</p>
     </div>

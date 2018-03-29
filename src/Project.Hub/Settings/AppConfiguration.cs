@@ -6,5 +6,6 @@ namespace Project.Hub.Settings
     {
         public string AppDisplayName { get; set; }
         public string ConfigPath { get; set; }
+        public int VersionsCacheExpirationInHours { get; set; }
     }
 }

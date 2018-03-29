@@ -54,6 +54,7 @@ namespace Project.Hub
             services
                 .AddMemoryCache()
                 .AddSingleton<IConfigPathResolver, ConfigResolver>()
+                .AddSingleton<ICacheExpirationProvider, ConfigResolver>()
                 .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
                 .AddSingleton<VersionResolverFactory>()
                 .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
