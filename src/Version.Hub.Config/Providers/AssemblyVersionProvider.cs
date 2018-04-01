@@ -22,17 +22,23 @@ namespace Version.Hub.Config.Providers
             var componentConfig = configs.VersionConfigs
                 .FirstOrDefault(v => String.Equals(v.UniqName, component, StringComparison.InvariantCultureIgnoreCase));
 
-            if(componentConfig != null && AssemblyUtils.TryGetVersion(componentConfig.Path, out var version))
+            if(componentConfig == null)
             {
+                throw new KeyNotFoundException($"'{component}' not found in configuration.");
+            }
+
+            try
+            {
+                var version = AssemblyUtils.GetVersion(componentConfig.Path);
                 return new VersionInfo
                 {
                     UniqName = component,
                     Version = version
                 };
             }
-            else
+            catch(Exception ex)
             {
-                throw new KeyNotFoundException($"'{component}' not found.");
+                throw new KeyNotFoundException($"'{component}' not found.", ex);
             }
         }
     }

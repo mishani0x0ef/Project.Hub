@@ -1,30 +1,21 @@
 ﻿using System.Threading.Tasks;
 using Project.Hub.Config.Entities.Version;
 using Common.File;
+using Microsoft.Extensions.Logging;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
-    internal class AssemblyVersionResolver : IVersionResolver
+    internal class AssemblyVersionResolver : ResolverWithFallback, IVersionResolver
     {
-        private readonly IVersionResolver _fallBackResolver;
-
-        public AssemblyVersionResolver(IVersionResolver fallback)
+        public AssemblyVersionResolver(IVersionResolver fallback, ILogger<IVersionResolver> logger) : base(fallback, logger)
         {
-            _fallBackResolver = fallback;
         }
 
-        public async Task<string> GetVersion(VersionOptions options)
+        protected override Task<string> GetRealVersion(VersionOptions options)
         {
             var path = options.Path;
-
-            if(AssemblyUtils.TryGetVersion(path, out var version))
-            {
-                return version;
-            }
-            else
-            {
-                return await _fallBackResolver.GetVersion(options);
-            }
+            var version = AssemblyUtils.GetVersion(path);
+            return Task.FromResult(version);
         }
     }
 }
