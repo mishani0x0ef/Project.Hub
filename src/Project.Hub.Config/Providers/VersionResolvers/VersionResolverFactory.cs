@@ -15,7 +15,7 @@ namespace Project.Hub.Config.Providers.VersionResolvers
             DefaultResolver = new DefaultVersionResolver();
             Resolvers = new Dictionary<VersionType, IVersionResolver>
             {
-                { VersionType.Assembly, new AssemblyVersionResolver(DefaultResolver) },
+                { VersionType.Assembly, new AssemblyVersionResolver(DefaultResolver, logger) },
                 { VersionType.VersionHub, new VersionHubResolver(DefaultResolver, logger) },
             };
         }
