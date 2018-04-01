@@ -33,7 +33,10 @@ namespace Project.Hub.Config.Util
             }
             foreach (var download in environment.Downloads)
             {
-                yield return download;
+                if(download.Type != DownloadType.RemoteDesktop)
+                {
+                    yield return download;
+                }
             }
             foreach (var service in environment.Services)
             {
