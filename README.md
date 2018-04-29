@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mishani0x0ef/Project.Hub.svg?branch=master)](https://travis-ci.org/mishani0x0ef/Project.Hub)
+[![CodeFactor](https://www.codefactor.io/repository/github/mishani0x0ef/project.hub/badge)](https://www.codefactor.io/repository/github/mishani0x0ef/project.hub)
 
 # Project.Hub
 Simple project that allow to describe useful links and downloads for your project using configuration file.
