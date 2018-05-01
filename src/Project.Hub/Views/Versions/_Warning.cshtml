@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Options;
 @using Project.Hub.Settings;
+@using Project.Hub.Utils;
 @inject IOptions<AppConfiguration> AppConfiguration
 @model System.DateTimeOffset
 
@@ -9,7 +10,12 @@
     </div>
     <div class="panel-body text-justify">
         <p>
-            <span>Versions last updated at <strong>@Model.ToString("dd MMM HH:mm")</strong>.</span>
+            <span>Versions last updated at 
+                <strong>
+                    @Model.ConvertToTimeZone(AppConfiguration.Value.DisplayTimeZone).ToString("dd MMM HH:mm")
+                </strong>
+                (@AppConfiguration.Value.DisplayTimeZone).
+            </span>
             <span>Info updating regulary. It could take 
             <strong>up to @AppConfiguration.Value.VersionsCacheExpirationInHours hours</strong> 
             for update.</span>
