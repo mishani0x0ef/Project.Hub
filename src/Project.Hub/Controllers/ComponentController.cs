@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project.Hub.Config.Entities.ComponentData;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Controllers
@@ -24,7 +26,29 @@ namespace Project.Hub.Controllers
                 {
                     if(component.Name == id)
                     {
-                        return View(component);
+                        var details = new ComponentDetails()
+                        {
+                            Name = component.Name,
+                            Description = component.Description,
+                            Environments = new HashSet<EnvironmentDetails>
+                            {
+                                new EnvironmentDetails()
+                                {
+                                    Name = "Test",
+                                    Description = "Testing Environment",
+                                    Version = "3.0.0",
+                                    Link = ""
+                                },
+                                new EnvironmentDetails()
+                                {
+                                    Name = "Production",
+                                    Description = "Production Environment",
+                                    Version = "2.0.0",
+                                    Link = ""
+                                }
+                            }
+                        };
+                        return View(details);
                     }
                 }
             }
