@@ -1,0 +1,25 @@
+﻿@using Project.Hub.Config.Entities.ComponentData
+
+@model IEnumerable<EnvironmentDetails>
+
+<div class="row">
+    <div class="list-panel-content col-xs-12">
+        @foreach (var env in Model)
+        {
+            <a class="list-panel-item col-xs-12" href="@env.Link" target="_blank">
+                <div class="col-xs-12 col-sm-10">
+                    <strong>@env.Name</strong>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    @if (!string.IsNullOrEmpty(env.Version))
+                    {
+                        <span>v.@env.Version</span>
+                    }
+                </div>
+                <div class="col-xs-12">
+                    <span class="text-light">@env.Description</span>
+                </div>
+            </a>
+        }
+    </div>
+</div>

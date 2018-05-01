@@ -1,0 +1,14 @@
+﻿@using Project.Hub.Config.Entities
+@using Project.Hub.Config.Entities.ComponentData
+
+@model ComponentDetails
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h2>@Model.Name</h2>
+<p class="lead">@Model.Description</p>
+
+@Html.Partial("_SectionHeader", new BaseConfig("Environments"))
+@Html.Partial("_Environments", Model.Environments)

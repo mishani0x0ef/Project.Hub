@@ -21,7 +21,9 @@
             @foreach (var component in Model.Components.OrderBy(c => c.Name))
             {
                 <tr>
-                    <td>@component.Name</td>
+                    <td>
+                        <a asp-controller="Component" asp-route-id="@component.Name">@component.Name</a>
+                    </td>
                     @foreach (var env in Model.Environments)
                     {
                         <td class="text-center">@component.GetEnvironmentVersionOrDefault(env).Version</td>

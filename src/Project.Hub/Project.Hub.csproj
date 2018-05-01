@@ -48,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Component\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
