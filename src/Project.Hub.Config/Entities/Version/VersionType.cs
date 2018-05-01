@@ -13,7 +13,7 @@
         VersionHub,
 
         /// <summary>
-        /// PowerShell script that resolve an version according to the interval logic and return it in the variable `version`.
+        /// PowerShell script that resolve an version according to the interval logic and return it.
         /// </summary>
         PowerShell,
     }
