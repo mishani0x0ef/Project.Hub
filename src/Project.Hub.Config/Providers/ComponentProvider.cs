@@ -51,16 +51,18 @@ namespace Project.Hub.Config.Providers
         {
             var allVersions = await _versionProvider.GetVersions();
             var versions = allVersions.Components.First(v => v.Name == componentName).Versions;
-            var envDetails = versions.Select(v => GetEnvironmentDetails(componentName, envs, v));
+            var envDetails = versions
+                .Select(v => GetEnvironmentDetails(componentName, envs, v))
+                .Where(v => v != null);
             return envDetails;
         }
 
         private EnvironmentDetails GetEnvironmentDetails(string componentName, IEnumerable<EnvironmentConfig> envs, ComponentVersion version)
         {
             var environment = envs.First(e => e.Name == version.EnvironmentName);
-            var component = environment.GetAllComponents().First(c => c.Name == componentName);
+            var component = environment.GetAllComponents().FirstOrDefault(c => c.Name == componentName);
 
-            return new EnvironmentDetails()
+            return component == null ? null : new EnvironmentDetails()
             {
                 Name = environment.Name,
                 Description = environment.Description,
