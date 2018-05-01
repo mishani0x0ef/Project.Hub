@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Hub.Config", "Proje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Hub", "Project.Hub\Project.Hub.csproj", "{67E68E53-8B58-4F33-B3F0-4A9D8B97726E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version.Hub", "Version.Hub\Version.Hub.csproj", "{83986BA3-2635-49C8-87F6-844E2E732567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Version.Hub", "Version.Hub\Version.Hub.csproj", "{83986BA3-2635-49C8-87F6-844E2E732567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version.Hub.Config", "Version.Hub.Config\Version.Hub.Config.csproj", "{325FD7DD-699C-484D-A83E-9347C42B3228}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Version.Hub.Config", "Version.Hub.Config\Version.Hub.Config.csproj", "{325FD7DD-699C-484D-A83E-9347C42B3228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version.Hub.Domain", "Version.Hub.Domain\Version.Hub.Domain.csproj", "{425D611F-4774-4783-B092-6780964CBC9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Version.Hub.Domain", "Version.Hub.Domain\Version.Hub.Domain.csproj", "{425D611F-4774-4783-B092-6780964CBC9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.File", "Common.File\Common.File.csproj", "{39DA12E3-649B-498F-BA7B-1F239D3E09B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.File", "Common.File\Common.File.csproj", "{39DA12E3-649B-498F-BA7B-1F239D3E09B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
