@@ -23,6 +23,13 @@ namespace Project.Hub.Config.Providers.VersionResolvers
                 var command = $"{RunPowershellCmd}{options.Path}";
 
                 var results = ps.AddScript(command).Invoke();
+
+                if (ps.HadErrors)
+                {
+                    var error = string.Join("\n", ps.Streams.Error?.Select(e => e.ToString()));
+                    throw new System.Exception(error);
+                }
+                
                 var version = results.FirstOrDefault();
                 return version?.ToString();
             }
