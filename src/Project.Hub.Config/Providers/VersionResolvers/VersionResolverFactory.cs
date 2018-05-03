@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Project.Hub.Config.Entities;
 using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Interfaces;
 using System.Collections.Generic;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
@@ -10,14 +11,14 @@ namespace Project.Hub.Config.Providers.VersionResolvers
         protected Dictionary<VersionType, IVersionResolver> Resolvers { get; set; }
         protected IVersionResolver DefaultResolver { get; set; }
 
-        public VersionResolverFactory(ILogger<IVersionResolver> logger)
+        public VersionResolverFactory(IOptionsProvider optionsProvider, ILogger<IVersionResolver> logger)
         {
             DefaultResolver = new DefaultVersionResolver();
             Resolvers = new Dictionary<VersionType, IVersionResolver>
             {
                 { VersionType.Assembly, new AssemblyVersionResolver(DefaultResolver, logger) },
                 { VersionType.VersionHub, new VersionHubResolver(DefaultResolver, logger) },
-                { VersionType.PowerShell, new PowerShellVersionResolver(DefaultResolver, logger) },
+                { VersionType.PowerShell, new PowerShellVersionResolver(optionsProvider.PowerShellPath, DefaultResolver, logger) },
             };
         }
 

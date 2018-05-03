@@ -8,10 +8,11 @@ namespace Project.Hub.Config.Providers.VersionResolvers
 {
     internal class PowerShellVersionResolver : ResolverWithFallback, IVersionResolver
     {
-        private const string RunPowershellCmd = "powershell -ExecutionPolicy ByPass -File ";
+        protected string RunPowershellCmd { get; set; }
 
-        public PowerShellVersionResolver(IVersionResolver fallback, ILogger<IVersionResolver> logger) : base(fallback, logger)
+        public PowerShellVersionResolver(string powershellPath, IVersionResolver fallback, ILogger<IVersionResolver> logger) : base(fallback, logger)
         {
+            RunPowershellCmd = $"{powershellPath} -ExecutionPolicy ByPass -File ";
         }
 
         protected override async Task<string> GetRealVersion(VersionOptions options)

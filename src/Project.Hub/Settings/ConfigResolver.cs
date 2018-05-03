@@ -6,9 +6,10 @@ using System;
 
 namespace Project.Hub.Settings
 {
-    public class ConfigResolver : IConfigPathResolver, ICacheExpirationProvider
+    public class ConfigResolver : IOptionsProvider, ICacheExpirationProvider
     {
         public string ConfigPath { get; }
+        public string PowerShellPath { get; }
 
         private readonly AppConfiguration _configuration;
 
@@ -18,6 +19,7 @@ namespace Project.Hub.Settings
 
             var relativePath = _configuration.ConfigPath;
             ConfigPath = Path.Combine(hostingEnvironment.ContentRootPath, relativePath);
+            PowerShellPath = _configuration.PowerShellPath;
         }
 
         public DateTimeOffset GetExpiration()

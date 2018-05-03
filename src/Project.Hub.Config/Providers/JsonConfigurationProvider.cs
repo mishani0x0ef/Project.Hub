@@ -7,7 +7,7 @@ namespace Project.Hub.Config.Providers
 {
     public class JsonConfigurationProvider : JsonCachableReader<Configuration>, IConfigurationProvider
     {
-        public JsonConfigurationProvider(IConfigPathResolver configPathResolver) : base(configPathResolver.ConfigPath)
+        public JsonConfigurationProvider(IOptionsProvider configPathResolver) : base(configPathResolver.ConfigPath)
         {
         }
 

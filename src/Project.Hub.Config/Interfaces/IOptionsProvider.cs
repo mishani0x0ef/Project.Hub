@@ -1,7 +1,8 @@
 ﻿namespace Project.Hub.Config.Interfaces
 {
-    public interface IConfigPathResolver
+    public interface IOptionsProvider
     {
         string ConfigPath { get; }
+        string PowerShellPath { get; }
     }
 }
