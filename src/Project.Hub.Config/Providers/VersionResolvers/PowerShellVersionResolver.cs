@@ -30,7 +30,7 @@ namespace Project.Hub.Config.Providers.VersionResolvers
                     throw new System.Exception(error);
                 }
                 
-                var version = results.FirstOrDefault();
+                var version = results.LastOrDefault();
                 return version?.ToString();
             }
         }
