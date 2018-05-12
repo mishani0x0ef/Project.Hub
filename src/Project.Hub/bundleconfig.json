@@ -14,5 +14,11 @@
     "inputFiles": [
       "wwwroot/css/code-editor.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admin.min.js",
+    "inputFiles": [
+      "wwwroot/js/admin/hub-config.js"
+    ]
   }
 ]
