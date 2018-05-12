@@ -10,43 +10,63 @@ namespace Project.Hub.Config.Providers
     public class RawConfigProvider : IRawConfigProvider
     {
         private readonly string _configPath;
+        private readonly string _nlogConfigPath;
         private readonly SemaphoreSlim _hubConfigSaveMutex = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _nlogConfigSaveMutex = new SemaphoreSlim(1);
 
         public RawConfigProvider(IOptionsProvider options)
         {
             _configPath = options.ConfigPath;
+            _nlogConfigPath = "nlog.config";
         }
 
         public async Task<RawConfig> GetConfig()
         {
-            using (var reader = File.OpenText(_configPath))
+            var config = new RawConfig
             {
-                var jsonConfig = await reader.ReadToEndAsync();
-                return new RawConfig
-                {
-                    HubConfigText = jsonConfig
-                };
-            }
+                HubConfigText = await ReadAsync(_configPath),
+                NLogConfigText = await ReadAsync(_nlogConfigPath)
+            };
+
+            return config;
         }
 
         public async Task UpdateHubConfig(string config)
         {
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
- 
-            using (var writter = new StreamWriter(_configPath))
+            await WriteAsync(_configPath, config, _hubConfigSaveMutex);         
+        }
+
+        public async Task UpdateNLogConfig(string config)
+        {
+            await WriteAsync(_nlogConfigPath, config, _nlogConfigSaveMutex);
+        }
+
+        private async Task<string> ReadAsync(string filePath)
+        {
+            using (var reader = File.OpenText(filePath))
             {
-                await _hubConfigSaveMutex.WaitAsync();
+                return await reader.ReadToEndAsync();
+            }
+        }
+
+        private async Task WriteAsync(string filePath, string content, SemaphoreSlim mutex)
+        {
+            if (content == null)
+                throw new ArgumentNullException(nameof(content));
+
+            using (var writter = new StreamWriter(filePath))
+            {
+                await mutex.WaitAsync();
 
                 try
                 {
-                    await writter.WriteAsync(config);
+                    await writter.WriteAsync(content);
                 }
                 finally
                 {
-                    _hubConfigSaveMutex.Release();
+                    mutex.Release();
                 }
-            }            
+            }
         }
     }
 }

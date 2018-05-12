@@ -25,5 +25,11 @@ namespace Project.Hub.Controllers
             // todo: clear cache. MR
             await _configProvider.UpdateHubConfig(config);
         }
+
+        [HttpPost]
+        public async Task SaveNlogConfig([FromBody] string config)
+        {
+            await _configProvider.UpdateNLogConfig(config);
+        }
     }
 }

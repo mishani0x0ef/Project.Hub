@@ -10,10 +10,14 @@
 </environment>
     
 @Html.Partial("_SectionHeader", new BaseConfig("Hub Configuration"))
-@Html.Partial("_HubConfigEditor", Model)
+@Html.Partial("_HubConfigSection", Model.HubConfigText)
+
+@Html.Partial("_SectionHeader", new BaseConfig("NLog Configuration"))
+@Html.Partial("_NLogConfigSection", Model.NLogConfigText)
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/mode-json.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/mode-xml.js"></script>
 <environment include="Development">
     <script type="text/javascript" src="~/js/admin/code-editor.js"></script>
 </environment>

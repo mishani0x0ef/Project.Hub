@@ -1,6 +1,8 @@
 ﻿@using Project.Hub.Config.Entities;
 
-@model RawConfig
+@model string
+
+<p class="lead">Configuration of all components and all you see on the website. It's probably the thing that changing most frequently.</p>
 
 <div class="panel panel-danger">
     <div class="panel-heading">
@@ -17,7 +19,7 @@
 </div>
 
 <div class="hub-config-editor">
-    @Html.Partial("_CodeEditor", Model.HubConfigText)
+    @Html.Partial("_CodeEditor", Model)
 </div>
 
 <script type="text/javascript">

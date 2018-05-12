@@ -11,14 +11,19 @@
         return this.editorContainer.querySelector(".btn-save");
     }
 
-    constructor(editorContainerSelector, saveUrl) {
+    constructor(editorContainerSelector, saveUrl, editorOptions) {
         this.editorContainerSelector = editorContainerSelector;
         this.saveUrl = saveUrl;
 
         this.editor = ace.edit(this.editorElement);
         this.isValid = true;
 
-        this._configureEditor(this.editor);
+        const options = Object.assign({
+            theme: "ace/theme/monokai",
+            mode: "ace/mode/json",
+        }, editorOptions);
+
+        this._configureEditor(this.editor, options);
         this.saveButton.addEventListener("click", () => this.save());
     }
 
@@ -47,9 +52,9 @@
         return this;
     }
 
-    _configureEditor(editor) {
-        editor.setTheme("ace/theme/monokai");
-        editor.session.setMode("ace/mode/json");
+    _configureEditor(editor, options) {
+        editor.setTheme(options.theme);
+        editor.session.setMode(options.mode);
 
         editor.setOptions({
             showPrintMargin: false,

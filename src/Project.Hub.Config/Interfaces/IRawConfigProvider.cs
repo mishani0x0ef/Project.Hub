@@ -7,5 +7,6 @@ namespace Project.Hub.Config.Interfaces
     {
         Task<RawConfig> GetConfig();
         Task UpdateHubConfig(string config);
+        Task UpdateNLogConfig(string config);
     }
 }
