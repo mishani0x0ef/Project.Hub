@@ -32,8 +32,8 @@
         });
  
         request
-            .then(() => this.showSaveSuccess())
-            .fail(() => this.showSaveError());
+            .then(() => this._showAllert(".alert-success"))
+            .fail(() => this._showAllert(".alert-danger"));
     }
 
     enableFullScreenSupport() {
@@ -52,16 +52,6 @@
         });
 
         return this;
-    }
-
-    showSaveSuccess() {
-        // todo: implement show of success.
-        alert("Success");
-    }
-
-    showSaveError() {
-        // todo: implement show of error.
-        alert("Error");
     }
 
     _configureEditor(editor) {
@@ -88,10 +78,18 @@
 
         if (isValid) {
             this.saveButton.classList.remove("disabled");
-            errorText.classList.add("invisible");
+            errorText.classList.add("hidden");
         } else {
             this.saveButton.classList.add("disabled");
-            errorText.classList.remove("invisible");
+            errorText.classList.remove("hidden");
         }
+    }
+
+    _showAllert(selector) {
+        const alert = this.editorContainer.querySelector(selector);
+        alert.classList.remove("hidden");
+        setTimeout(() => {
+            alert.classList.add("hidden");
+        }, 5000);
     }
 }

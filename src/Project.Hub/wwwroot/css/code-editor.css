@@ -1,7 +1,6 @@
 ﻿.editor-container {
     position: relative;
     height: 500px;
-    z-index: 1050;
 }
 
     .editor-container.full-screen {
@@ -10,6 +9,7 @@
         left: 0;
         height: 100%;
         width: 100%;
+        z-index: 1050;
     }
 
     .editor-container .btn {
@@ -39,3 +39,10 @@
         height: 100%;
         width: 100%;
     }
+
+.code-editor .alert {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
