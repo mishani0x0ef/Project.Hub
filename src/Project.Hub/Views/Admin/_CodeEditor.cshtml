@@ -1,0 +1,17 @@
+﻿@model string;
+
+<div class="editor-container panel">
+    <button class="btn btn-lg btn-link btn-expand invisible">
+        <span class="glyphicon glyphicon-fullscreen"></span>
+    </button>
+    <button class="btn btn-lg btn-link btn-collapse invisible">
+        <span class="glyphicon glyphicon-resize-small"></span>
+    </button>
+
+    <div class="editor-content">@Model</div>
+</div>
+
+<div>
+    <button class="btn btn-primary btn-save">Save Config</button>
+    <span class="text-danger invisible config-error">JSON is invalid. Fix all errors.</span>
+</div>

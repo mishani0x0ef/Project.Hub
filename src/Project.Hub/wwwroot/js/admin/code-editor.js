@@ -1,0 +1,97 @@
+﻿class CodeEditor {
+    get editorContainer() {
+        return document.querySelector(this.editorContainerSelector);
+    }
+
+    get editorElement() {
+        return this.editorContainer.querySelector(".editor-content");
+    }
+
+    get saveButton() {
+        return this.editorContainer.querySelector(".btn-save");
+    }
+
+    constructor(editorContainerSelector, saveUrl) {
+        this.editorContainerSelector = editorContainerSelector;
+        this.saveUrl = saveUrl;
+
+        this.editor = ace.edit(this.editorElement);
+        this.isValid = true;
+
+        this._configureEditor(this.editor);
+        this.saveButton.addEventListener("click", () => this.save());
+    }
+
+    save() {
+        const text = this.editor.getValue();
+        const request = $.ajax({
+            method: "POST",
+            url: this.saveUrl,
+            contentType: "application/json",
+            data: JSON.stringify(text)
+        });
+ 
+        request
+            .then(() => this.showSaveSuccess())
+            .fail(() => this.showSaveError());
+    }
+
+    enableFullScreenSupport() {
+        const expandBtn = this.editorContainer.querySelector(".btn-expand");
+        expandBtn.classList.remove("invisible");
+        expandBtn.addEventListener("click", (e) => {
+            event.currentTarget.parentElement.classList.add("full-screen");
+            this.editor.resize();
+        });
+
+        const collapseButton = this.editorContainer.querySelector(".btn-collapse");
+        collapseButton.classList.remove("invisible");
+        collapseButton.addEventListener("click", (e) => {
+            event.currentTarget.parentElement.classList.remove("full-screen");
+            this.editor.resize();
+        });
+
+        return this;
+    }
+
+    showSaveSuccess() {
+        // todo: implement show of success.
+        alert("Success");
+    }
+
+    showSaveError() {
+        // todo: implement show of error.
+        alert("Error");
+    }
+
+    _configureEditor(editor) {
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/json");
+
+        editor.setOptions({
+            showPrintMargin: false,
+        });
+
+        editor.getSession().on("changeAnnotation", (e) => this._onTextChanged());
+    }
+
+    _onTextChanged() {
+        const annotations = this.editor.getSession().getAnnotations();
+        const isValid = annotations.length < 1;
+
+        if (this.isValid === isValid) {
+            return;
+        }
+
+        this.isValid = isValid;
+        const errorText = this.editorContainer.querySelector(".config-error");
+
+        if (isValid) {
+            this.saveButton.classList.remove("disabled");
+            errorText.classList.add("invisible");
+        } else {
+            this.saveButton.classList.add("disabled");
+            errorText.classList.remove("invisible");
+        }
+    }
+}

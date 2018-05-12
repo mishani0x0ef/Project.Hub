@@ -1,0 +1,35 @@
+﻿@using Project.Hub.Config.Entities;
+
+@model RawConfig
+
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Before Edit</h3>
+    </div>
+    <div class="panel-body">
+        <p>Please, make sure you know what you are doing. <strong>Incorrect configuration can break the site.</strong></p>
+        <p>
+            You may need to get acquainted with <a href="https://github.com/mishani0x0ef/Project.Hub" target="_blank">the official doc</a> before providing any changes.
+        </p>
+        <p>After configuration update all data will be reloaded. So, you do not have to make any manual changes (such as application pool refresh or so).</p>
+        <p>🍺🎉🥂🍺🎉🥂</p>
+    </div>
+</div>
+
+<div class="hub-config-editor">
+    @Html.Partial("_CodeEditor", Model.HubConfigText)
+</div>
+
+<script type="text/javascript">
+    (function () {
+        var readyCalled = false;
+        document.addEventListener("DOMContentLoaded", () => {
+            if (readyCalled)
+                return;
+
+            readyCalled = true;
+            new CodeEditor(".hub-config-editor", "admin/saveHubConfig")
+                .enableFullScreenSupport();
+        }, false);
+     })();
+</script>

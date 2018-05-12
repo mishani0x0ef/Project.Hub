@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\admin\hub-config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="scripts\installnetcore.ps1" />
   </ItemGroup>
 

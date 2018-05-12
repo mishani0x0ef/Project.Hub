@@ -18,7 +18,7 @@
   {
     "outputFileName": "wwwroot/js/admin.min.js",
     "inputFiles": [
-      "wwwroot/js/admin/hub-config.js"
+      "wwwroot/js/admin/code-editor.js"
     ]
   }
 ]
