@@ -1,0 +1,6 @@
+﻿@using Project.Hub.Config.Entities;
+
+@model RawConfig;
+    
+@Html.Partial("_SectionHeader", new BaseConfig("Hub Configuration"))
+@Html.Partial("HubConfig/_HubConfigEditor", Model)
