@@ -5,6 +5,6 @@
         /// <summary>
         /// Raw config textual representation.
         /// </summary>
-        public string Text { get; set; }
+        public string HubConfigText { get; set; }
     }
 }

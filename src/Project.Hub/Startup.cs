@@ -59,6 +59,7 @@ namespace Project.Hub
                 .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
                 .AddSingleton<VersionResolverFactory>()
                 .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
+                .AddSingleton<IRawConfigProvider, RawConfigProvider>()
                 ;
         }
     }

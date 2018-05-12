@@ -19,9 +19,7 @@
         <span class="glyphicon glyphicon-resize-small"></span>
     </button>
 
-    <div id="hub-config-editor" class="editor-content">
-        @Model.Text
-    </div>
+    <div id="hub-config-editor" class="editor-content">@Model.HubConfigText</div>
 </div>
 
 <div>
@@ -39,5 +37,6 @@
 </environment>
 
 <script>
-    new HubConfigEditor("hub-config-editor");
+    new HubConfigEditor("hub-config-editor")
+        .enableFullScreenSupport();
 </script>

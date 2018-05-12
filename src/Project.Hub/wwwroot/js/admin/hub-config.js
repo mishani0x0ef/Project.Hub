@@ -4,7 +4,45 @@
         this.isValid = true;
  
         this._configureEditor(this.editor);
-        this._enableFullScreenSupport();
+        this._enableSave();
+    }
+
+    enableFullScreenSupport() {
+        const expandButtons = document.querySelectorAll(".editor-container .btn-expand");
+        expandButtons.forEach(b => b.addEventListener("click", (e) => {
+            event.currentTarget.parentElement.classList.add("full-screen");
+            this.editor.resize();
+        }));
+
+        const collapseButtons = document.querySelectorAll(".editor-container .btn-collapse");
+        collapseButtons.forEach(b => b.addEventListener("click", (e) => {
+            event.currentTarget.parentElement.classList.remove("full-screen");
+            this.editor.resize();
+        }));
+    }
+
+    saveHubConfiig() {
+        const text = this.editor.getValue();
+        const promise = $.ajax({
+            method: "POST",
+            url: "admin/saveHubConfig",
+            contentType: "application/json",
+            data: JSON.stringify(text)
+        });
+
+        promise
+            .then(() => this.showSaveSuccess())
+            .catch(() => this.showSaveError());
+    }
+
+    showSaveSuccess() {
+        // todo: implement show of success.
+        alert("Success");
+    }
+
+    showSaveError() {
+        // todo: implement show of error.
+        alert("Error");
     }
 
     _configureEditor(editor) {
@@ -18,22 +56,9 @@
         editor.getSession().on("changeAnnotation", (e) => this._onTextChanged());
     }
 
-    _enableFullScreenSupport() {
-        const expandButtons = document.querySelectorAll(".editor-container .btn-expand");
-        expandButtons.forEach(button => button.addEventListener("click", (e) => this._onExpandClicked(e)));
-
-        const collapseButtons = document.querySelectorAll(".editor-container .btn-collapse");
-        collapseButtons.forEach(button => button.addEventListener("click", (e) => this._onCollapseClicked(e)));
-    }
-
-    _onExpandClicked(event) {
-        event.currentTarget.parentElement.classList.add("full-screen");
-        this.editor.resize();
-    }
-
-    _onCollapseClicked(event) {
-        event.currentTarget.parentElement.classList.remove("full-screen");
-        this.editor.resize();
+    _enableSave() {
+        const saveButton = document.getElementById("btn-hub-config-save");
+        saveButton.addEventListener("click", () => this.saveHubConfiig());
     }
 
     _onTextChanged() {

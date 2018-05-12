@@ -1,20 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Project.Hub.Config.Entities;
+using Project.Hub.Config.Interfaces;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IRawConfigProvider _configProvider;
+
+        public AdminController(IRawConfigProvider configProvider)
+        {
+            _configProvider = configProvider;
+        }
+
         public async Task<IActionResult> Index()
         {
-            var text = System.IO.File.ReadAllText("hub.config.json");
-            var config = new RawConfig
-            {
-                Text = text
-            };
-
+            var config = await _configProvider.GetConfig();
             return View(config);
+        }
+
+        [HttpPost]
+        public async Task SaveHubConfig([FromBody] string config)
+        {
+            // todo: clear cache. MR
+            await _configProvider.UpdateHubConfig(config);
         }
     }
 }
