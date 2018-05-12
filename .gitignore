@@ -254,3 +254,7 @@ paket-files/
 dist/
 
 src/Project\.Hub/wwwroot/css/site\.min\.css
+
+src/Project\.Hub/wwwroot/css/code-editor\.min\.css
+
+src/Project\.Hub/wwwroot/js/admin\.min\.js

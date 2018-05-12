@@ -8,5 +8,11 @@
       "wwwroot/css/bootstrap.paper.css",
       "wwwroot/css/site.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/code-editor.min.css",
+    "inputFiles": [
+      "wwwroot/css/code-editor.css"
+    ]
   }
 ]
