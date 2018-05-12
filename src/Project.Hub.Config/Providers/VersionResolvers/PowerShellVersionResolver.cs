@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Project.Hub.Config.Entities.Version;
 using System.Management.Automation;
 using System.Linq;
+using System.Text;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
@@ -28,7 +29,14 @@ namespace Project.Hub.Config.Providers.VersionResolvers
                 if (ps.HadErrors)
                 {
                     var error = string.Join("\n", ps.Streams.Error?.Select(e => e.ToString()));
-                    throw new System.Exception(error);
+                    var console = string.Join("\n", results?.Select(r => r.ToString()));
+
+                    var builder = new StringBuilder("PowerShell error:")
+                        .AppendLine(error)
+                        .AppendLine("PowerShell console output:")
+                        .AppendLine(console);
+
+                    throw new System.Exception(builder.ToString());
                 }
                 
                 var version = results.LastOrDefault();
