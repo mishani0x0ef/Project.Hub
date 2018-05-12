@@ -61,15 +61,8 @@ namespace Project.Hub.Config.Providers
         {
             var componentNames = GetComponentsNames(config);
             var uniqComponentNames = new HashSet<string>(componentNames);
-            var components = new List<Component>();
-
-            foreach(var name in uniqComponentNames)
-            {
-                var versionTasks = config.Environments.Select(e => GetComponentVersion(name, e));
-                var versions = await Task.WhenAll(versionTasks.ToArray());
-                var component = new Component { Name = name, Versions = new HashSet<ComponentVersion>(versions) };
-                components.Add(component);
-            }
+            var componentTasks = uniqComponentNames.Select(c => GetComponent(c, config.Environments));
+            var components = await Task.WhenAll(componentTasks.ToArray());
             return components;
         }
 
@@ -82,6 +75,14 @@ namespace Project.Hub.Config.Providers
                 names.AddRange(configs.Select(c => c.Name));
             }
             return names;
+        }
+
+        private async Task<Component> GetComponent(string name, IEnumerable<EnvironmentConfig> environments)
+        {
+            var versionTasks = environments.Select(e => GetComponentVersion(name, e));
+            var versions = await Task.WhenAll(versionTasks.ToArray());
+            var component = new Component { Name = name, Versions = new HashSet<ComponentVersion>(versions) };
+            return component;
         }
 
         private async Task<ComponentVersion> GetComponentVersion(string name, EnvironmentConfig environment)
