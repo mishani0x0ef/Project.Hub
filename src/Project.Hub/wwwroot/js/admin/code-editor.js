@@ -24,14 +24,7 @@
 
     save() {
         const text = this.editor.getValue();
-        const request = $.ajax({
-            method: "POST",
-            url: this.saveUrl,
-            contentType: "application/json",
-            data: JSON.stringify(text)
-        });
- 
-        request
+        return $.post(this.saveUrl, JSON.stringify(text))
             .then(() => this._showAllert(".alert-success"))
             .fail(() => this._showAllert(".alert-danger"));
     }
