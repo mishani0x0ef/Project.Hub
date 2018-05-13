@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using Microsoft.Extensions.Options;
+using Project.Hub.Settings;
 
 namespace Project.Hub.Services
 {
@@ -15,19 +17,17 @@ namespace Project.Hub.Services
     {
         private readonly IReadOnlyList<IdentityUser> _users;
 
-        public VeryVeryHardcodedUserStore(IPasswordHasher<IdentityUser> hasher)
+        public VeryVeryHardcodedUserStore(IOptions<AppConfiguration> configuration)
         {
-            var username = "admin";
-            var password = "admin123456";
+            var user = configuration.Value.Admin;
 
             var admin = new IdentityUser
             {
-                Id = "1",
-                UserName = username,
-                NormalizedUserName = username.ToUpper()
+                Id = user.Id,
+                UserName = user.Username,
+                NormalizedUserName = user.Username.ToUpper(),
+                PasswordHash = user.PasswordHash
             };
-
-            admin.PasswordHash = hasher.HashPassword(admin, password);
 
             _users = new List<IdentityUser> { admin };
         }
