@@ -1,0 +1,22 @@
+﻿@model string
+
+<p class="lead">Latest available error logs of the website.</p>
+
+<div class="logs-editor">
+    @Html.Partial("_CodeEditor", Model)
+</div>
+
+<script type="text/javascript">
+    (function () {
+        var readyCalled = false;
+        document.addEventListener("DOMContentLoaded", () => {
+            if (!readyCalled) {
+                readyCalled = true;
+                new CodeEditor(".logs-editor", null, {
+                    mode: "ace/mode/text",
+                    readOnly: true,
+                }).enableFullScreenSupport();
+            }
+        }, false);
+     })();
+</script>

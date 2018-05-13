@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Cache\Common.Cache.csproj" />
     <ProjectReference Include="..\Common.File\Common.File.csproj" />
     <ProjectReference Include="..\Version.Hub.Domain\Version.Hub.Domain.csproj" />
   </ItemGroup>

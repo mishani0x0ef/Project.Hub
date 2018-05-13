@@ -8,5 +8,23 @@
       "wwwroot/css/bootstrap.paper.css",
       "wwwroot/css/site.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/code-editor.min.css",
+    "inputFiles": [
+      "wwwroot/css/code-editor.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/common.min.js",
+    "inputFiles": [
+      "wwwroot/js/common/globalConfig.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admin.min.js",
+    "inputFiles": [
+      "wwwroot/js/admin/code-editor.js"
+    ]
   }
 ]

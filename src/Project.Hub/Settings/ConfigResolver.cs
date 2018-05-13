@@ -9,6 +9,7 @@ namespace Project.Hub.Settings
     public class ConfigResolver : IOptionsProvider, ICacheExpirationProvider
     {
         public string ConfigPath { get; }
+        public string LogsPath { get; }
         public string PowerShellPath { get; }
 
         private readonly AppConfiguration _configuration;
@@ -19,6 +20,7 @@ namespace Project.Hub.Settings
 
             var relativePath = _configuration.ConfigPath;
             ConfigPath = Path.Combine(hostingEnvironment.ContentRootPath, relativePath);
+            LogsPath = Path.Combine(hostingEnvironment.ContentRootPath, _configuration.LogsPath);
             PowerShellPath = _configuration.PowerShellPath;
         }
 
