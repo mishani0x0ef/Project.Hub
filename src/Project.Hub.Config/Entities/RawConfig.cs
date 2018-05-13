@@ -11,5 +11,10 @@
         /// Raw NLog config.
         /// </summary>
         public string NLogConfigText { get; set; }
+
+        /// <summary>
+        /// Textual representation of the latest log.
+        /// </summary>
+        public string LatestLog { get; set; }
     }
 }

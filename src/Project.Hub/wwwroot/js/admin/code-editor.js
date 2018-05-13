@@ -21,6 +21,7 @@
         const options = Object.assign({
             theme: "ace/theme/monokai",
             mode: "ace/mode/json",
+            readOnly: false,
         }, editorOptions);
 
         this._configureEditor(this.editor, options);
@@ -59,6 +60,8 @@
         editor.setOptions({
             showPrintMargin: false,
         });
+
+        editor.setReadOnly(options.readOnly);
 
         editor.getSession().on("changeAnnotation", (e) => this._onTextChanged());
     }

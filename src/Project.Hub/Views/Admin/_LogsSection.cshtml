@@ -1,0 +1,25 @@
+﻿@using Project.Hub.Config.Entities;
+
+@model string
+
+<p class="lead">Latest error logs of the website.</p>
+
+<div class="logs-editor">
+    @Html.Partial("_CodeEditor", Model)
+</div>
+
+<script type="text/javascript">
+    (function () {
+        var readyCalled = false;
+        document.addEventListener("DOMContentLoaded", () => {
+            if (readyCalled)
+                return;
+
+            readyCalled = true;
+            new CodeEditor(".logs-editor", null, {
+                mode: "ace/mode/text",
+                readOnly: true,
+            }).enableFullScreenSupport();
+        }, false);
+     })();
+</script>

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using System;
+using System.Linq;
 
 namespace Project.Hub.Config.Providers
 {
@@ -11,6 +12,7 @@ namespace Project.Hub.Config.Providers
     {
         private readonly string _configPath;
         private readonly string _nlogConfigPath;
+        private readonly string _logsPath;
         private readonly SemaphoreSlim _hubConfigSaveMutex = new SemaphoreSlim(1);
         private readonly SemaphoreSlim _nlogConfigSaveMutex = new SemaphoreSlim(1);
 
@@ -18,6 +20,7 @@ namespace Project.Hub.Config.Providers
         {
             _configPath = options.ConfigPath;
             _nlogConfigPath = "nlog.config";
+            _logsPath = options.LogsPath;
         }
 
         public async Task<RawConfig> GetConfig()
@@ -25,7 +28,8 @@ namespace Project.Hub.Config.Providers
             var config = new RawConfig
             {
                 HubConfigText = await ReadAsync(_configPath),
-                NLogConfigText = await ReadAsync(_nlogConfigPath)
+                NLogConfigText = await ReadAsync(_nlogConfigPath),
+                LatestLog = await GetLatestLog(_logsPath),
             };
 
             return config;
@@ -39,6 +43,21 @@ namespace Project.Hub.Config.Providers
         public async Task UpdateNLogConfig(string config)
         {
             await WriteAsync(_nlogConfigPath, config, _nlogConfigSaveMutex);
+        }
+
+        private async Task<string> GetLatestLog(string logsPath)
+        {
+            if (!Directory.Exists(logsPath))
+            {
+                return string.Empty;
+            }
+
+            var dirInfo = new DirectoryInfo(_logsPath);
+            var latestFile = dirInfo.GetFiles()
+                .OrderByDescending(f => f.LastWriteTime)
+                .FirstOrDefault();
+
+            return latestFile == null ? string.Empty : await ReadAsync(latestFile.FullName);
         }
 
         private async Task<string> ReadAsync(string filePath)
