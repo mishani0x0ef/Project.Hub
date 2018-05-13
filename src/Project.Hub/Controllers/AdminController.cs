@@ -1,10 +1,12 @@
 ﻿using Common.Cache;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.Hub.Config.Interfaces;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IRawConfigProvider _configProvider;
