@@ -38,14 +38,14 @@
     enableFullScreenSupport() {
         const expandBtn = this.editorContainer.querySelector(".btn-expand");
         expandBtn.classList.remove("invisible");
-        expandBtn.addEventListener("click", (e) => {
+        expandBtn.addEventListener("click", () => {
             event.currentTarget.parentElement.classList.add("full-screen");
             this.editor.resize();
         });
 
         const collapseButton = this.editorContainer.querySelector(".btn-collapse");
         collapseButton.classList.remove("invisible");
-        collapseButton.addEventListener("click", (e) => {
+        collapseButton.addEventListener("click", () => {
             event.currentTarget.parentElement.classList.remove("full-screen");
             this.editor.resize();
         });
@@ -63,7 +63,7 @@
 
         editor.setReadOnly(options.readOnly);
 
-        editor.getSession().on("changeAnnotation", (e) => this._onTextChanged());
+        editor.getSession().on("changeAnnotation", () => this._onTextChanged());
     }
 
     _onTextChanged() {
