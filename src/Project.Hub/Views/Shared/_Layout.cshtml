@@ -1,7 +1,9 @@
-﻿@using Microsoft.Extensions.Options;
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Options;
 @using Project.Hub.Settings;
 
 @inject IOptions<AppConfiguration>  AppConfiguration
+@inject SignInManager<IdentityUser> SignInManager
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +46,16 @@
                     <li>
                         <a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                     </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link" title="Log Out">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                </button>
+                            </form>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

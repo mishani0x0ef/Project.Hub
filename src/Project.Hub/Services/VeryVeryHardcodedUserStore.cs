@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Project.Hub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +11,33 @@ namespace Project.Hub.Services
     /// It's very hardcoded user store just for admin user.
     /// Someday I will implement normal auth flow, but I'm very lazy now...
     /// </summary>
-    public class VeryVeryHardcodedUserStore : IUserStore<ApplicationUser>, IUserPasswordStore<ApplicationUser>
+    public class VeryVeryHardcodedUserStore : IUserStore<IdentityUser>, IUserPasswordStore<IdentityUser>
     {
-        private readonly IReadOnlyList<ApplicationUser> _users;
-   
-        public VeryVeryHardcodedUserStore()
+        private readonly IReadOnlyList<IdentityUser> _users;
+
+        public VeryVeryHardcodedUserStore(IPasswordHasher<IdentityUser> hasher)
         {
-            var admin = new ApplicationUser
+            var username = "admin";
+            var password = "admin123456";
+
+            var admin = new IdentityUser
             {
                 Id = "1",
-                UserName = "admin",
-                NormalizedUserName = "admin",
-                PasswordHash = "admin123456"
+                UserName = username,
+                NormalizedUserName = username.ToUpper()
             };
 
-            _users = new List<ApplicationUser> { admin };
+            admin.PasswordHash = hasher.HashPassword(admin, password);
+
+            _users = new List<IdentityUser> { admin };
         }
 
-        public Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<IdentityResult> CreateAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> DeleteAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<IdentityResult> DeleteAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -43,71 +46,73 @@ namespace Project.Hub.Services
         {
         }
 
-        public async Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public Task<IdentityUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             if (userId == null) throw new ArgumentNullException(nameof(userId));
 
-            return _users.FirstOrDefault(u => u.Id == userId);
+            var user = _users.FirstOrDefault(u => u.Id == userId);
+            return Task.FromResult(user);
         }
 
-        public async Task<ApplicationUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public Task<IdentityUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             if (normalizedUserName == null) throw new ArgumentNullException(nameof(normalizedUserName));
 
-            return _users.FirstOrDefault(u => u.NormalizedUserName == normalizedUserName);
+            var user = _users.FirstOrDefault(u => u.NormalizedUserName == normalizedUserName);
+            return Task.FromResult(user);
         }
 
-        public Task<string> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedUserNameAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetPasswordHashAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<string> GetPasswordHashAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
             return Task.FromResult(user.PasswordHash);
         }
 
-        public Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<string> GetUserIdAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
             return Task.FromResult(user.Id.ToString());
         }
 
-        public Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<string> GetUserNameAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
             return Task.FromResult(user.UserName);
         }
 
-        public Task<bool> HasPasswordAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<bool> HasPasswordAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetNormalizedUserNameAsync(ApplicationUser user, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedUserNameAsync(IdentityUser user, string normalizedName, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
             user.NormalizedUserName = normalizedName ?? throw new ArgumentNullException(nameof(normalizedName));
             return Task.FromResult<object>(null);
         }
 
-        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash, CancellationToken cancellationToken)
+        public Task SetPasswordHashAsync(IdentityUser user, string passwordHash, CancellationToken cancellationToken)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
             user.PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
             return Task.FromResult<object>(null);
         }
 
-        public Task SetUserNameAsync(ApplicationUser user, string userName, CancellationToken cancellationToken)
+        public Task SetUserNameAsync(IdentityUser user, string userName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> UpdateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public Task<IdentityResult> UpdateAsync(IdentityUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

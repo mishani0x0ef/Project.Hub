@@ -58,8 +58,9 @@ namespace Project.Hub
 
         private void ConfigureAuth(IServiceCollection services)
         {
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddUserStore<VeryVeryHardcodedUserStore>()
+                .AddRoleStore<StubRoleStore>()
                 .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options =>
