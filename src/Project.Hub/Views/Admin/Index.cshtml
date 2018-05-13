@@ -1,6 +1,7 @@
 ﻿@using Project.Hub.Config.Entities;
+@using Project.Hub.Models.Admin;
 
-@model RawConfig;
+@model RawConfigExtended;
 
 <environment include="Development">
     <link rel="stylesheet" href="~/css/code-editor.css" />
@@ -11,6 +12,9 @@
     
 @Html.Partial("_SectionHeader", new BaseConfig("Hub Configuration"))
 @Html.Partial("_HubConfigSection", Model.HubConfigText)
+
+@Html.Partial("_SectionHeader", new BaseConfig("Change Password"))
+@Html.Partial("_ChangePasswordSection", Model.AdminNewPasswordHash)
 
 @Html.Partial("_SectionHeader", new BaseConfig("NLog Configuration"))
 @Html.Partial("_NLogConfigSection", Model.NLogConfigText)

@@ -1,6 +1,7 @@
 ﻿using Common.Cache;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.Hub.Config.Interfaces;
@@ -8,6 +9,7 @@ using Project.Hub.Config.Providers;
 using Project.Hub.Config.Providers.VersionResolvers;
 using Project.Hub.Services;
 using Project.Hub.Settings;
+using System;
 
 namespace Project.Hub
 {
@@ -23,6 +25,7 @@ namespace Project.Hub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureAuth(services);
             ConfigureDependencyInjection(services);
             services.AddMvc();
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
@@ -41,13 +44,29 @@ namespace Project.Hub
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-
-            app.UseMvc(routes =>
+            app
+                .UseStaticFiles()
+                .UseAuthentication()
+                .UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        private void ConfigureAuth(IServiceCollection services)
+        {
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddUserStore<VeryVeryHardcodedUserStore>()
+                .AddRoleStore<StubRoleStore>()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromHours(24);
+                options.LoginPath = "/Account/Login";
+                options.SlidingExpiration = true;
             });
         }
 

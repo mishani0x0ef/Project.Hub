@@ -10,5 +10,7 @@ namespace Project.Hub.Settings
         public string DisplayTimeZone { get; set; }
         public string LogsPath { get; set; }
         public string PowerShellPath { get; set; }
+
+        public User Admin { get; set; }
     }
 }
