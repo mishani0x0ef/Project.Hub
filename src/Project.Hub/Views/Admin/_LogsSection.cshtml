@@ -1,8 +1,6 @@
-﻿@using Project.Hub.Config.Entities;
+﻿@model string
 
-@model string
-
-<p class="lead">Latest error logs of the website.</p>
+<p class="lead">Latest available error logs of the website.</p>
 
 <div class="logs-editor">
     @Html.Partial("_CodeEditor", Model)
@@ -12,14 +10,13 @@
     (function () {
         var readyCalled = false;
         document.addEventListener("DOMContentLoaded", () => {
-            if (readyCalled)
-                return;
-
-            readyCalled = true;
-            new CodeEditor(".logs-editor", null, {
-                mode: "ace/mode/text",
-                readOnly: true,
-            }).enableFullScreenSupport();
+            if (!readyCalled) {
+                readyCalled = true;
+                new CodeEditor(".logs-editor", null, {
+                    mode: "ace/mode/text",
+                    readOnly: true,
+                }).enableFullScreenSupport();
+            }
         }, false);
      })();
 </script>
