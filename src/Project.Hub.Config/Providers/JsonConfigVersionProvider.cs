@@ -8,6 +8,7 @@ using System;
 using Project.Hub.Config.Util;
 using Project.Hub.Config.Providers.VersionResolvers;
 using Microsoft.Extensions.Caching.Memory;
+using Common.Cache;
 
 namespace Project.Hub.Config.Providers
 {
@@ -18,12 +19,12 @@ namespace Project.Hub.Config.Providers
         private readonly IConfigurationProvider _configProvider;
         private readonly ICacheExpirationProvider _cacheExpirationProvider;
         private readonly VersionResolverFactory _versionFactory;
-        private readonly IMemoryCache _cache;
+        private readonly ICache _cache;
 
         public JsonConfigVersionProvider(IConfigurationProvider configProvider,
             ICacheExpirationProvider cacheExpirationProvider,
-            VersionResolverFactory factory, 
-            IMemoryCache cache)
+            VersionResolverFactory factory,
+            ICache cache)
         {
             _configProvider = configProvider;
             _cacheExpirationProvider = cacheExpirationProvider;

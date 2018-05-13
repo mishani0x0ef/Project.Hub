@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Cache\Common.Cache.csproj" />
     <ProjectReference Include="..\Project.Hub.Config\Project.Hub.Config.csproj" />
   </ItemGroup>
 
