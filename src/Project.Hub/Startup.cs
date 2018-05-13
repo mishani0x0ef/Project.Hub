@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Providers;
 using Project.Hub.Config.Providers.VersionResolvers;
-using Project.Hub.Models;
 using Project.Hub.Services;
 using Project.Hub.Settings;
 using System;

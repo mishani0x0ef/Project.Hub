@@ -121,3 +121,17 @@ a.tile:hover {
 .text-light {
     font-weight: 100;
 }
+
+.login-panel {
+    width: 310px;
+    margin: 0 auto;
+}
+
+    .login-panel form {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+.login-panel .btn {
+    width: 100%;
+}
