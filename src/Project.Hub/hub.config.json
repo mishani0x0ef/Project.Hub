@@ -4,7 +4,7 @@
       "Name": "GitHub",
       "Description": "Link to project's GitHub.",
       "Url": "https://github.com/mishani0x0ef/Project.Hub",
-      "ShowFavicon":  true
+      "ShowFavicon": true
     },
     {
       "Name": "Project Issues",
@@ -17,6 +17,13 @@
       "Description": "Link on page with prject releases.",
       "Url": "https://github.com/mishani0x0ef/Project.Hub/releases",
       "ShowFavicon": true
+    },
+    {
+      "Name": "Fallback favicon",
+      "Description": "Fallback favicon used.",
+      "Url": "https://analytics.google.com",
+      "ShowFavicon": true,
+      "FaviconFallback": "https://cdn.iconscout.com/icon/free/png-256/google-analytics-7-722699.png"
     }
   ],
   "Environments": [

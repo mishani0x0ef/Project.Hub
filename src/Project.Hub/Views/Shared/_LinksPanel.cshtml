@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Project.Hub.Config.Entities.SiteLink>
+﻿@using Project.Hub.Config.Util
+
+@model IEnumerable<Project.Hub.Config.Entities.SiteLink>
 
 @if (Model != null && Model.Any())
 {
@@ -12,13 +14,15 @@
                 {
                     <a class="list-panel-item col-xs-12" href="@site.Url" target="_blank">
                         <div class="col-xs-12 col-sm-3">
-                            @if (!site.ShowFavicon || string.IsNullOrEmpty(site.Favicon))
+                            @if (!site.HasFavicon())
                             {
                                 <span class="glyphicon glyphicon-link"></span>
                             }
                             else
                             {
-                                <img class="list-panel-item-icon" src="@site.Favicon" />
+                                <object class="list-panel-item-icon" data="@site.Favicon" type="image/png">
+                                    <img class="list-panel-item-icon" src="@site.FaviconFallback" alt="icon">
+                                </object>
                             } 
                             <span>@site.Name</span>
                         </div>

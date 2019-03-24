@@ -8,6 +8,8 @@ namespace Project.Hub.Config.Entities
 
         public bool ShowFavicon { get; set; }
 
+        public string FaviconFallback { get; set; }
+
         public string Favicon
         {
             get
