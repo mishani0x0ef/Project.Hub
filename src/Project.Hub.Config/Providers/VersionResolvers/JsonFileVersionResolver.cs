@@ -1,15 +1,18 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Project.Hub.Config.Entities.Version;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using Project.Hub.Config.Interfaces;
 
 namespace Project.Hub.Config.Providers.VersionResolvers
 {
-    public class JsonFileVersionResolver : ResolverWithFallback, IVersionResolver
+    internal class JsonFileVersionResolver : ResolverWithFallback, IVersionResolver
     {
-        public JsonFileVersionResolver(IVersionResolver fallback, ILogger<IVersionResolver> logger) : base(fallback, logger)
+        private readonly IFileService _fileService;
+
+        public JsonFileVersionResolver(IVersionResolver fallback, ILogger<IVersionResolver> logger, IFileService fileService) : base(fallback, logger)
         {
+            _fileService = fileService;
         }
 
         protected async override Task<string> GetRealVersion(VersionOptions options)
@@ -17,16 +20,12 @@ namespace Project.Hub.Config.Providers.VersionResolvers
             var parts = options.Path.Split('|');
             var filePath = parts[0];
             var jsonSelector = $"$.{parts[1]}";
-
-            using (var stream = File.OpenText(filePath))
-            {
-                // todo: improve, don't reread file if it's not changed. MR
-                var json = await stream.ReadToEndAsync();
-                var token = JObject
+            var json = await _fileService.ReadAsync(filePath);
+            var token = JObject
                     .Parse(json)
                     .SelectToken(jsonSelector);
-                return token.Value<string>();
-            }
+
+            return token.Value<string>();
         }
     }
 }
