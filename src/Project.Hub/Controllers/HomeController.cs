@@ -4,6 +4,7 @@ using Project.Hub.Models;
 using Project.Hub.Config.Interfaces;
 using Project.Hub.Config.Util;
 using System.Threading.Tasks;
+using Project.Hub.Utils;
 
 namespace Project.Hub.Controllers
 {
@@ -32,6 +33,16 @@ namespace Project.Hub.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult SwitchTheme()
+        {
+            var currentTheme = Request.Cookies[Theme.CookieKey];
+            var nextTheme = Theme.GetNext(currentTheme);
+            Response.Cookies.Append(Theme.CookieKey, nextTheme);
+
+            var referer = Request.Headers["Referer"];
+            return Redirect(referer);
         }
     }
 }

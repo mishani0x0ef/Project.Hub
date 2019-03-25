@@ -25,6 +25,10 @@
     background-color: #272727;
 }
 
+    .theme-dark .navbar-separator {
+        opacity: 0.1;
+    }
+
 .theme-dark .tile,
 .theme-dark .list-panel-content {
     background-color: #1c1c1c;

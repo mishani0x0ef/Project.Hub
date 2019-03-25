@@ -1,12 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.Extensions.Options;
 @using Project.Hub.Settings;
+@using Project.Hub.Utils;
 
 @inject IOptions<AppConfiguration>  AppConfiguration
 @inject SignInManager<IdentityUser> SignInManager
 
 <!DOCTYPE html>
-<html class="theme-dark">
+<html class="@Context.Request.Cookies[Theme.CookieKey]">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,10 +41,19 @@
                         <a asp-area="" asp-controller="Home" asp-action="Index">Main</a>
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="Versions" asp-action="Index">Versions <span class="badge">New</span></a>
+                        <a asp-area="" asp-controller="Versions" asp-action="Index">Versions</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="SwitchTheme">
+                            <span class="glyphicon glyphicon-adjust"></span>
+                            <span>Switch Theme</span>
+                        </a>
+                    </li>
+                    <li>
+                        <p class="navbar-separator"></p>
+                    </li>
                     <li>
                         <a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                     </li>
