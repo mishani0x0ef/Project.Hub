@@ -20,10 +20,8 @@
                             }
                             else
                             {
-                                <object class="list-panel-item-icon" data="@site.Favicon" type="image/png">
-                                    <img class="list-panel-item-icon" src="@site.FaviconFallback" alt="icon">
-                                </object>
-                            } 
+                                <img class="list-panel-item-icon" src="@site.Favicon" onerror="this.src='@site.FaviconFallback'" alt="i">
+                            }
                             <span>@site.Name</span>
                         </div>
                         <div class="col-xs-12 col-sm-9">
