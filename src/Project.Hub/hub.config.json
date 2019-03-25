@@ -24,6 +24,13 @@
       "Url": "https://analytics.google.com",
       "ShowFavicon": true,
       "FaviconFallback": "https://cdn.iconscout.com/icon/free/png-256/google-analytics-7-722699.png"
+    },
+    {
+      "Name": "Invalid Fallback favicon",
+      "Description": "Fallback favicon used.",
+      "Url": "https://analytics.google.com",
+      "ShowFavicon": true,
+      "FaviconFallback": "https://dontexists"
     }
   ],
   "Environments": [

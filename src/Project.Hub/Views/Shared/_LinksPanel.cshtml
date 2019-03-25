@@ -20,7 +20,7 @@
                             }
                             else
                             {
-                                <img class="list-panel-item-icon" src="@site.Favicon" onerror="this.src='@site.FaviconFallback'" alt="i">
+                                <img class="list-panel-item-icon" src="@site.Favicon" onerror="this.onerror = null;this.src='@site.FaviconFallback';" alt="i">
                             }
                             <span>@site.Name</span>
                         </div>
