@@ -15,11 +15,11 @@ namespace Project.Hub.Config.Providers.VersionResolvers
             _fileService = fileService;
         }
 
-        protected async override Task<string> GetRealVersion(VersionOptions options)
+        protected override async Task<string> GetRealVersion(VersionOptions options)
         {
             var parts = options.Path.Split('|');
             var filePath = parts[0];
-            var jsonSelector = $"$.{parts[1]}";
+            var jsonSelector = parts[1];
             var json = await _fileService.ReadAsync(filePath);
             var token = JObject
                     .Parse(json)

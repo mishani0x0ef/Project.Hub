@@ -47,7 +47,11 @@
         {
           "Name": "Download by link",
           "Description": "Download file using web link to this file.",
-          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf"
+          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf",
+          "VersionOptions": {
+            "Type": "JsonFile",
+            "Path": "appsettings.json|$['AppConfiguration']['AppDisplayName']"
+          }
         },
         {
           "Name": "Download from file system",
@@ -75,7 +79,7 @@
           "Url": "https://developer.github.com/v3/",
           "VersionOptions": {
             "Type": "JsonFile",
-            "Path": "appsettings.json|AppConfiguration.AppDisplayName"
+            "Path": "appsettings.json|$.AppConfiguration.AppDisplayName"
           }
         }
       ]
