@@ -16,5 +16,10 @@
         /// PowerShell script that resolve an version according to the interval logic and return it.
         /// </summary>
         PowerShell,
+
+        /// <summary>
+        /// Resolve from json file.
+        /// </summary>
+        JsonFile
     }
 }

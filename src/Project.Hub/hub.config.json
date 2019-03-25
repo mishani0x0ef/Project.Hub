@@ -72,7 +72,11 @@
         {
           "Name": "Web Service (API) link",
           "Description": "Link any services and APIs used by your system.",
-          "Url": "https://developer.github.com/v3/"
+          "Url": "https://developer.github.com/v3/",
+          "VersionOptions": {
+            "Type": "JsonFile",
+            "Path": "appsettings.json|AppConfiguration.AppDisplayName"
+          }
         }
       ]
 

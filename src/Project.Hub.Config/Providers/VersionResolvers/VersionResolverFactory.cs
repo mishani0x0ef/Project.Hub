@@ -19,6 +19,7 @@ namespace Project.Hub.Config.Providers.VersionResolvers
                 { VersionType.Assembly, new AssemblyVersionResolver(DefaultResolver, logger) },
                 { VersionType.VersionHub, new VersionHubResolver(DefaultResolver, logger) },
                 { VersionType.PowerShell, new PowerShellVersionResolver(optionsProvider.PowerShellPath, DefaultResolver, logger) },
+                { VersionType.JsonFile, new JsonFileVersionResolver(DefaultResolver, logger) },
             };
         }
 
