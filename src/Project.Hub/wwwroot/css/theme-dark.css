@@ -9,7 +9,7 @@
 .theme-dark h3,
 .theme-dark h4,
 .theme-dark h5 {
-    color: #f0f0f0;
+    color: #e0e0e0;
 }
 
     .theme-dark .table > tbody > tr > td,
@@ -46,11 +46,13 @@
 }
 
 .theme-dark .btn-primary {
-    background-color: #0b2e4a;
+    color: #1b92f0;
+    border: 1px solid #1b92f0;
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
     .theme-dark .btn-primary:focus:active {
-        background-color: #0f3e63;
+        background-color: rgba(0, 0, 0, 0.0);
     }
 
 .theme-dark .btn-link:hover {

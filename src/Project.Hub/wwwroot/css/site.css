@@ -150,6 +150,10 @@ a.tile:hover {
     border-radius: 6px;
 }
 
+.btn-primary {
+    border-radius: 6px;
+}
+
 .navbar-separator {
     background-color: #b2dbfb;
     padding: 17px 0;
