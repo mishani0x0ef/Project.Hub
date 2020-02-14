@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using Project.Hub.Api.Config;
 using Serilog;
 
@@ -25,7 +26,15 @@ namespace Project.Hub.Api
                 .AddPreConfiguredResponseCompression()
                 .AddServices();
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+
+            services
+                .AddPreConfiguredSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +56,8 @@ namespace Project.Hub.Api
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
-                });
+                })
+                .UsePreConfiguredSwaggerWithUI();
         }
     }
 }

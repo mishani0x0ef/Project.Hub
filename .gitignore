@@ -258,3 +258,9 @@ src/Project\.Hub/wwwroot/css/site\.min\.css
 src/Project\.Hub/wwwroot/css/code-editor\.min\.css
 
 src/Project\.Hub/wwwroot/js/admin\.min\.js
+
+src/api/Project.Hub.Api/Project.Hub.Api.xml
+
+src/api/Project.Hub.Data/Project.Hub.Data.xml
+
+src/api/Project.Hub.Domain/Project.Hub.Domain.xml
