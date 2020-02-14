@@ -22,6 +22,7 @@ namespace Project.Hub.Api
         {
             services
                 .AddPreConfiguredCors()
+                .AddPreConfiguredResponseCompression()
                 .AddServices();
 
             services.AddControllers();
@@ -39,6 +40,7 @@ namespace Project.Hub.Api
 
             app
                 .UsePreConfiguredCors(env)
+                .UseResponseCompression()
                 .UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthorization()
