@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project.Hub.Api.Config;
+using Serilog;
 
 namespace Project.Hub.Api
 {
@@ -21,7 +22,9 @@ namespace Project.Hub.Api
         {
             services
                 .AddPreConfiguredCors()
-                .AddControllers();
+                .AddServices();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,7 +32,9 @@ namespace Project.Hub.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app
+                    .UseDeveloperExceptionPage()
+                    .UseSerilogRequestLogging();
             }
 
             app
