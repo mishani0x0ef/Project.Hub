@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\project\.my\Project.Hub\src\api\Project.Hub.Domain\Project.Hub.Domain.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
