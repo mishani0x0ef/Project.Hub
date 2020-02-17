@@ -17,7 +17,11 @@ namespace Project.Hub.Api
             try
             {
                 logger.Information("Starting web host");
-                CreateHostBuilder(args).Build().Run();
+                
+                CreateHostBuilder(args)
+                    .Build()
+                    .InitDatabase()
+                    .Run();
             }
             catch (Exception ex)
             {

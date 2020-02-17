@@ -35,6 +35,7 @@ namespace Project.Hub.Api
                 });
 
             services
+                .AddPreConfiguredDbContexts(Configuration)
                 .AddPreConfiguredSwagger();
         }
 
