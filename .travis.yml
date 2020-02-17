@@ -1,26 +1,12 @@
 language: csharp
-solution: Project.Hub.sln
 mono: none
-dotnet: 2.1.4
-script:
-  - cd src
+dotnet: 3.1
+before_install:
+  - cd ./src/api/
+install:
   - dotnet restore
-  - dotnet publish ./Project.Hub/Project.Hub.csproj -c Release -o "../../dist/"
-
-before_deploy:
-  - cd ../dist
-  - zip -r project.hub.zip ./*
-  - cd ..
-
-deploy:
-  skip_cleanup: true
-  provider: elasticbeanstalk
-  access_key_id: $aws_access_key
-  secret_access_key: $aws_secret_key
-  region: "us-east-2"  
-  app: "project.hub"
-  env: "projecthub-env"
-  bucket_name: "projecthub-env"
-  zip_file: "./dist/project.hub.zip"
-  on:
-    branch: master
+script:
+  - dotnet build
+  - dotnet test ./Project.Hub.Data.Test/Project.Hub.Data.Test.csproj
+after_script:
+  - cd ../../
