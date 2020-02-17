@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Project.Hub.Api.Config;
 using Serilog;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Project.Hub.Api
 {
     public class Startup
@@ -61,3 +62,4 @@ namespace Project.Hub.Api
         }
     }
 }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

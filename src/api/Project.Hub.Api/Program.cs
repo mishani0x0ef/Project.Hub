@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Project.Hub.Api
 {
     public class Program
@@ -49,3 +50,4 @@ namespace Project.Hub.Api
         }
     }
 }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
