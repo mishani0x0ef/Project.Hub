@@ -1,6 +1,6 @@
 {
   "Serilog": {
-    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.Debug", "Serilog.Sinks.File" ],
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.Debug", "Serilog.Sinks.File", "Sentry.Serilog" ],
     "MinimumLevel": "Debug",
     "WriteTo": [
       { "Name": "Console" },
@@ -10,6 +10,13 @@
         "Args": {
           "path": "%TEMP%\\Logs\\log.log",
           "rollingInterval": "Day"
+        }
+      },
+      {
+        "Name": "Sentry",
+        "Args": {
+          "minimumBreadcrumbLevel": "Debug",
+          "minimumEventLevel":  "Error"
         }
       }
     ],

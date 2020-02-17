@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Project.Hub.Api.Config;
 using Serilog;
 using System;
 
@@ -33,8 +34,9 @@ namespace Project.Hub.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog();
+                    webBuilder.UsePreConfiguredSentry();
+                    webBuilder.UseSerilog();
+                });
 
         private static ILogger InitLogger()
         {
