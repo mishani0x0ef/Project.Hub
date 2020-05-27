@@ -35,7 +35,7 @@ namespace Project.Hub.Config.Providers
                     {
                         Sites = AddaptToV1(config.Websites, env.Name),
                         Services = AddaptToV1(config.Apis, env.Name),
-                        Downloads = new List<DownloadLink>(),
+                        Downloads = AddaptToV1(config.Downloads, env.Name),
                     }).ToList()
             };
         }
@@ -62,6 +62,26 @@ namespace Project.Hub.Config.Providers
                         Url = env.Url,
                         VersionOptions = env.VersionOptions,
                         ShowFavicon = true,
+                    };
+                })
+                .ToList();
+        }
+
+        private List<DownloadLink> AddaptToV1(IEnumerable<Download> downloads, string environment)
+        {
+            return downloads
+                .Where(download => download.Environments.Any(e => e.Environment == environment))
+                .Select(download =>
+                {
+                    var env = download.Environments.First(e => e.Environment == environment);
+                    return new DownloadLink
+                    {
+                        Name = download.Name,
+                        Description = download.Description,
+                        Type = download.Type,
+                        Mode = download.Mode,
+                        DownloadPath = env.DownloadPath,
+                        VersionOptions = env.VersionOptions,
                     };
                 })
                 .ToList();

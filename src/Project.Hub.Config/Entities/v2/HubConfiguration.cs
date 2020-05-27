@@ -1,4 +1,5 @@
-﻿using Project.Hub.Config.Entities.Version;
+﻿using Project.Hub.Config.Entities.v1;
+using Project.Hub.Config.Entities.Version;
 using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.v2
@@ -25,10 +26,23 @@ namespace Project.Hub.Config.Entities.v2
         public VersionOptions VersionOptions { get; set; }
     }
 
+    public class DownloadEnvironment : IEnvironmentable
+    {
+        public string Environment { get; set; }
+        public string DownloadPath { get; set; }
+        public VersionOptions VersionOptions { get; set; }
+    }
+
     public class EnvironmentalComponent<T> : BaseConfig where T : IEnvironmentable
     {
         public string FaviconFallback { get; set; }
         public IEnumerable<T> Environments { get; set; }
+    }
+
+    public class Download : EnvironmentalComponent<DownloadEnvironment>
+    {
+        public DownloadType Type { get; set; }
+        public DownloadMode Mode { get; set; }
     }
 
     public class HubConfiguration
@@ -37,5 +51,6 @@ namespace Project.Hub.Config.Entities.v2
         public IEnumerable<CommonService> CommonServices { get; set; }
         public IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> Websites { get; set; }
         public IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> Apis { get; set; }
+        public IEnumerable<Download> Downloads { get; set; }
     }
 }
