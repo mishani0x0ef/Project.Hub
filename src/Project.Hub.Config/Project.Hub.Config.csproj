@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Common.Cache\Common.Cache.csproj" />
     <ProjectReference Include="..\Common.File\Common.File.csproj" />
-    <ProjectReference Include="..\Version.Hub.Domain\Version.Hub.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
