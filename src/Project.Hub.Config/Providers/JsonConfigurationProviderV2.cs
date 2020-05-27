@@ -23,50 +23,48 @@ namespace Project.Hub.Config.Providers
             return ToConfiguration(config);
         }
 
-        private Configuration ToConfiguration(HubConfiguration initialConfig)
+        private Configuration ToConfiguration(HubConfiguration config)
         {
             return new Configuration
             {
-                SystemLinks = initialConfig.CommonServices
-                    .Select(s => new SiteLink(s.Name, s.Url, s.Description)
-                    {
-                        ShowFavicon = true
-                    })
+                SystemLinks = config.CommonServices
+                    .Select(AddaptToV1)
                     .ToList(),
-                Environments = initialConfig.Environments
+                Environments = config.Environments
                     .Select(env => new EnvironmentConfig(env.Name, env.Description)
                     {
-                        Sites = initialConfig.Websites
-                            .Where(s => s.Environments.Any(e => e.Environment == env.Name))
-                            .Select(s =>
-                            {
-                                var envSite = s.Environments.First(e => e.Environment == env.Name);
-                                return new SiteLink
-                                {
-                                    Name = s.Name,
-                                    Description = s.Description,
-                                    ShowFavicon = true,
-                                    Url = envSite.Url,
-                                    VersionOptions = envSite.VersionOptions,
-                                };
-                            }).ToList(),
-                        Services = initialConfig.Apis
-                            .Where(s => s.Environments.Any(e => e.Environment == env.Name))
-                            .Select(s =>
-                            {
-                                var envSite = s.Environments.First(e => e.Environment == env.Name);
-                                return new SiteLink
-                                {
-                                    Name = s.Name,
-                                    Description = s.Description,
-                                    ShowFavicon = true,
-                                    Url = envSite.Url,
-                                    VersionOptions = envSite.VersionOptions,
-                                };
-                            }).ToList(),
+                        Sites = AddaptToV1(config.Websites, env.Name),
+                        Services = AddaptToV1(config.Apis, env.Name),
                         Downloads = new List<DownloadLink>(),
                     }).ToList()
             };
+        }
+
+        private SiteLink AddaptToV1(CommonService website)
+        {
+            return new SiteLink(website.Name, website.Url, website.Description)
+            {
+                ShowFavicon = true
+            };
+        }
+
+        private List<SiteLink> AddaptToV1(IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> websites, string environment)
+        {
+            return websites
+                .Where(site => site.Environments.Any(e => e.Environment == environment))
+                .Select(site =>
+                {
+                    var env = site.Environments.First(e => e.Environment == environment);
+                    return new SiteLink
+                    {
+                        Name = site.Name,
+                        Description = site.Description,
+                        Url = env.Url,
+                        VersionOptions = env.VersionOptions,
+                        ShowFavicon = true,
+                    };
+                })
+                .ToList();
         }
     }
 }
