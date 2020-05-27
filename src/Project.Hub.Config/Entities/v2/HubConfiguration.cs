@@ -13,23 +13,29 @@ namespace Project.Hub.Config.Entities.v2
         public string FaviconFallback { get; set; }
     }
 
-    public class WebsiteEnvironment
+    public interface IEnvironmentable
+    {
+        string Environment { get; set; }
+    }
+
+    public class WebsiteEnvironment : IEnvironmentable
     {
         public string Environment { get; set; }
         public string Url { get; set; }
         public VersionOptions VersionOptions { get; set; }
     }
 
-    public class Website : BaseConfig
+    public class EnvironmentalComponent<T> : BaseConfig where T : IEnvironmentable
     {
         public string FaviconFallback { get; set; }
-        public IEnumerable<WebsiteEnvironment> Environments { get; set; }
+        public IEnumerable<T> Environments { get; set; }
     }
 
     public class HubConfiguration
     {
         public IEnumerable<EnvironmentDescription> Environments { get; set; }
         public IEnumerable<CommonService> CommonServices { get; set; }
-        public IEnumerable<Website> Websites { get; set; }
+        public IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> Websites { get; set; }
+        public IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> Apis { get; set; }
     }
 }

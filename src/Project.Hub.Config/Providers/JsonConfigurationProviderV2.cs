@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Common.File;
 using Project.Hub.Config.Entities.v1;
@@ -48,7 +49,22 @@ namespace Project.Hub.Config.Providers
                                     Url = envSite.Url,
                                     VersionOptions = envSite.VersionOptions,
                                 };
-                            }).ToList()
+                            }).ToList(),
+                        Services = initialConfig.Apis
+                            .Where(s => s.Environments.Any(e => e.Environment == env.Name))
+                            .Select(s =>
+                            {
+                                var envSite = s.Environments.First(e => e.Environment == env.Name);
+                                return new SiteLink
+                                {
+                                    Name = s.Name,
+                                    Description = s.Description,
+                                    ShowFavicon = true,
+                                    Url = envSite.Url,
+                                    VersionOptions = envSite.VersionOptions,
+                                };
+                            }).ToList(),
+                        Downloads = new List<DownloadLink>(),
                     }).ToList()
             };
         }

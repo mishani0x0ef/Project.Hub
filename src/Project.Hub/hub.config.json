@@ -1,5 +1,5 @@
 {
-  "Version":  "2.0",
+  "Version": "2.0",
 
   "Environments": [
     {
@@ -41,6 +41,23 @@
     {
       "Name": "GitHub link",
       "Description": "Could be link on any website. Click cause redirect.",
+      "Environments": [
+        {
+          "Environment": "Testing",
+          "Url": "https://github.com"
+        },
+        {
+          "Environment": "Production",
+          "Url": "https://github.com"
+        }
+      ]
+    }
+  ],
+
+  "Apis": [
+    {
+      "Name": "Some API link",
+      "Description": "Could be link on any API (or better - API's Swagger). Click cause redirect.",
       "Environments": [
         {
           "Environment": "Testing",
