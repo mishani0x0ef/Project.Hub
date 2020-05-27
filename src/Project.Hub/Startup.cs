@@ -77,7 +77,7 @@ namespace Project.Hub
                 .AddSingleton<IComponentProvider, ComponentProvider>()
                 .AddSingleton<IOptionsProvider, ConfigResolver>()
                 .AddSingleton<ICacheExpirationProvider, ConfigResolver>()
-                .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProvider>()
+                .AddSingleton<Config.Interfaces.IConfigurationProvider, JsonConfigurationProviderV2>()
                 .AddSingleton<VersionResolverFactory>()
                 .AddSingleton<IVersionProvider, JsonConfigVersionProvider>()
                 .AddSingleton<IRawConfigProvider, RawConfigProvider>()

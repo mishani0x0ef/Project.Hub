@@ -1,6 +1,6 @@
 ﻿using Project.Hub.Config.Util;
 
-namespace Project.Hub.Config.Entities
+namespace Project.Hub.Config.Entities.v1
 {
     public class SiteLink : ComponentConfig
     {

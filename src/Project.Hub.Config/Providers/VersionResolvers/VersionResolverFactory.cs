@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Project.Hub.Config.Entities;
+using Project.Hub.Config.Entities.v1;
 using Project.Hub.Config.Entities.Version;
 using Project.Hub.Config.Interfaces;
 using System.Collections.Generic;

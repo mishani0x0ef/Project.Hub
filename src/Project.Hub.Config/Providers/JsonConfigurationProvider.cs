@@ -1,7 +1,7 @@
-﻿using Project.Hub.Config.Entities;
-using Project.Hub.Config.Interfaces;
+﻿using Project.Hub.Config.Interfaces;
 using System.Threading.Tasks;
 using Common.File;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Providers
 {

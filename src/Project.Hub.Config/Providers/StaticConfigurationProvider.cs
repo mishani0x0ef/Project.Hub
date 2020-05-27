@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Project.Hub.Config.Entities;
 using Project.Hub.Config.Interfaces;
 using System.Threading.Tasks;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Providers
 {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Project.Hub.Config.Entities;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Utils
 {

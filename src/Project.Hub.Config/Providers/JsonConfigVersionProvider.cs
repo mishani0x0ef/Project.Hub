@@ -3,12 +3,12 @@ using Project.Hub.Config.Entities.Version;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
-using Project.Hub.Config.Entities;
 using System;
 using Project.Hub.Config.Util;
 using Project.Hub.Config.Providers.VersionResolvers;
 using Microsoft.Extensions.Caching.Memory;
 using Common.Cache;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Providers
 {

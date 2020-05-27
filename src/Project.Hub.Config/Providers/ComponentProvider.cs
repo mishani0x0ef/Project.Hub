@@ -3,9 +3,9 @@ using Project.Hub.Config.Entities.ComponentData;
 using System.Threading.Tasks;
 using Project.Hub.Config.Util;
 using System.Collections.Generic;
-using Project.Hub.Config.Entities;
 using System.Linq;
 using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Providers
 {

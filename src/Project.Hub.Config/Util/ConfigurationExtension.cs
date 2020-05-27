@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Project.Hub.Config.Entities;
-using System.Collections;
 using System.Collections.Generic;
+using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Util
 {

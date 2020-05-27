@@ -1,4 +1,4 @@
-﻿namespace Project.Hub.Config.Entities
+﻿namespace Project.Hub.Config.Entities.v1
 {
     public enum DownloadMode
     {
