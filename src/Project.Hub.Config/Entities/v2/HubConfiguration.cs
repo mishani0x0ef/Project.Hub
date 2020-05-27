@@ -7,6 +7,12 @@ namespace Project.Hub.Config.Entities.v2
     {
     }
 
+    public class CommonService : BaseConfig
+    {
+        public string Url { get; set; }
+        public string FaviconFallback { get; set; }
+    }
+
     public class WebsiteEnvironment
     {
         public string Environment { get; set; }
@@ -23,6 +29,7 @@ namespace Project.Hub.Config.Entities.v2
     public class HubConfiguration
     {
         public IEnumerable<EnvironmentDescription> Environments { get; set; }
+        public IEnumerable<CommonService> CommonServices { get; set; }
         public IEnumerable<Website> Websites { get; set; }
     }
 }

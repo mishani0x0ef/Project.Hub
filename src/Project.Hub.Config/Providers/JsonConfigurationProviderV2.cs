@@ -26,24 +26,30 @@ namespace Project.Hub.Config.Providers
         {
             return new Configuration
             {
+                SystemLinks = initialConfig.CommonServices
+                    .Select(s => new SiteLink(s.Name, s.Url, s.Description)
+                    {
+                        ShowFavicon = true
+                    })
+                    .ToList(),
                 Environments = initialConfig.Environments
-                .Select(env => new EnvironmentConfig(env.Name, env.Description)
-                {
-                    Sites = initialConfig.Websites
-                        .Where(s => s.Environments.Any(e => e.Environment == env.Name))
-                        .Select(s =>
-                        {
-                            var envSite = s.Environments.First(e => e.Environment == env.Name);
-                            return new SiteLink
+                    .Select(env => new EnvironmentConfig(env.Name, env.Description)
+                    {
+                        Sites = initialConfig.Websites
+                            .Where(s => s.Environments.Any(e => e.Environment == env.Name))
+                            .Select(s =>
                             {
-                                Name = s.Name,
-                                Description = s.Description,
-                                ShowFavicon = true,
-                                Url = envSite.Url,
-                                VersionOptions = envSite.VersionOptions,
-                            };
-                        }).ToList()
-                }).ToList()
+                                var envSite = s.Environments.First(e => e.Environment == env.Name);
+                                return new SiteLink
+                                {
+                                    Name = s.Name,
+                                    Description = s.Description,
+                                    ShowFavicon = true,
+                                    Url = envSite.Url,
+                                    VersionOptions = envSite.VersionOptions,
+                                };
+                            }).ToList()
+                    }).ToList()
             };
         }
     }
