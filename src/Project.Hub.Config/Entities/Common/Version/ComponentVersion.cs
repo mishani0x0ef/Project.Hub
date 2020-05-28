@@ -7,7 +7,14 @@ namespace Project.Hub.Config.Entities.Common.Version
     /// </summary>
     public class ComponentVersion
     {
+        /// <summary>
+        /// Name of the current environment.
+        /// </summary>
         public string EnvironmentName { get; set; }
+
+        /// <summary>
+        /// Version of the component on the current environment.
+        /// </summary>
         public string Version { get; set; }
 
         public ComponentVersion()

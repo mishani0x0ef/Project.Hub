@@ -5,6 +5,11 @@ namespace Project.Hub.Config.Util
 {
     public static class SiteLinkExtension
     {
+        /// <summary>
+        /// Check is current website can have favicon displayed.
+        /// </summary>
+        /// <param name="link">Website info.</param>
+        /// <returns>True of favicon can be displayed.</returns>
         public static bool HasFavicon(this SiteLink link)
         {
             if (link == null)

@@ -3,7 +3,7 @@
 namespace Project.Hub.Config.Entities.Common.Version
 {
     /// <summary>
-    /// Describe basic component (any service, site or app).
+    /// Describe basic component (any service, site or application).
     /// </summary>
     public class Component
     {

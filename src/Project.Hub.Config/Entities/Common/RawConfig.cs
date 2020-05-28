@@ -1,14 +1,18 @@
 ﻿namespace Project.Hub.Config.Entities.Common
 {
+    /// <summary>
+    /// Provide set of configurations in textual representation.
+    /// </summary>
     public class RawConfig
     {
         /// <summary>
-        /// Raw config textual representation.
+        /// Textual representation of the hub configuration.
+        /// Raw configuration in JSON format.
         /// </summary>
         public string HubConfigText { get; set; }
 
         /// <summary>
-        /// Raw NLog config.
+        /// Raw NLog configuration.
         /// </summary>
         public string NLogConfigText { get; set; }
 

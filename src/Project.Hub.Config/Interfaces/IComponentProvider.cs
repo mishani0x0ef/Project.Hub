@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Interfaces
 {
+    /// <summary>
+    /// Provide operations to resolve info about the specific component.
+    /// </summary>
     public interface IComponentProvider
     {
         /// <summary>

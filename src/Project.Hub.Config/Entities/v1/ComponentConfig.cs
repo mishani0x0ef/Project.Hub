@@ -1,14 +1,15 @@
 ﻿using Project.Hub.Config.Entities.Common;
 using Project.Hub.Config.Entities.Common.Version;
+using Project.Hub.Config.Entities.v2;
 using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.v1
 {
-    public class ComponentConfig : BaseConfig
+    /// <summary>
+    /// Configuration of the specific component (website, downloads).
+    /// </summary>
+    public class ComponentConfig : BaseConfig, ITagged
     {
-        /// <summary>
-        /// Collection of tags that can additionaly describe current item.
-        /// </summary>
         public IEnumerable<string> Tags { get; set; }
 
         /// <summary>
@@ -16,13 +17,10 @@ namespace Project.Hub.Config.Entities.v1
         /// </summary>
         public VersionOptions VersionOptions { get; set; }
 
-        public bool IsVersionProvider
-        {
-            get
-            {
-                return VersionOptions != null && !string.IsNullOrWhiteSpace(VersionOptions.Path);
-            }
-        }
+        /// <summary>
+        /// Gets if options to resolve component's version is provided.
+        /// </summary>
+        public bool IsVersionProvider => !string.IsNullOrWhiteSpace(VersionOptions?.Path);
 
         public ComponentConfig()
         {

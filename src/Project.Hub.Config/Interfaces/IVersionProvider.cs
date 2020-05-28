@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Interfaces
 {
+    /// <summary>
+    /// Provide operations to resolve application version.
+    /// </summary>
     public interface IVersionProvider
     {
         /// <summary>
