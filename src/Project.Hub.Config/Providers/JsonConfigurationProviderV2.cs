@@ -9,7 +9,7 @@ using Project.Hub.Config.Interfaces;
 namespace Project.Hub.Config.Providers
 {
     /// <summary>
-    /// Support second version of json configuration.
+    /// Support second version of JSON configuration.
     /// </summary>
     public class JsonConfigurationProviderV2 : JsonCachableReader<HubConfiguration>, IConfigurationProvider
     {
@@ -40,7 +40,7 @@ namespace Project.Hub.Config.Providers
             };
         }
 
-        private SiteLink AddaptToV1(CommonService website)
+        private SiteLink AddaptToV1(CommonWebsite website)
         {
             return new SiteLink(website.Name, website.Url, website.Description)
             {

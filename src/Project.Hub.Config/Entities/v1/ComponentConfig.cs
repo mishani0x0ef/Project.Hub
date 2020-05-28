@@ -1,6 +1,5 @@
 ﻿using Project.Hub.Config.Entities.Common;
 using Project.Hub.Config.Entities.Common.Version;
-using Project.Hub.Config.Entities.v2;
 using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.v1
@@ -8,13 +7,10 @@ namespace Project.Hub.Config.Entities.v1
     /// <summary>
     /// Configuration of the specific component (website, downloads).
     /// </summary>
-    public class ComponentConfig : BaseConfig, ITagged
+    public class ComponentConfig : BaseConfig, ITagged, IVersioned
     {
         public IEnumerable<string> Tags { get; set; }
 
-        /// <summary>
-        /// Describe component version resolution options.
-        /// </summary>
         public VersionOptions VersionOptions { get; set; }
 
         /// <summary>
