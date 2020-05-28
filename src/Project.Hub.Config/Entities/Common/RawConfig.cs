@@ -1,4 +1,4 @@
-﻿namespace Project.Hub.Config.Entities
+﻿namespace Project.Hub.Config.Entities.Common
 {
     public class RawConfig
     {

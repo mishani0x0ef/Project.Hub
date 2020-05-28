@@ -1,4 +1,4 @@
-﻿using Project.Hub.Config.Entities.Version;
+﻿using Project.Hub.Config.Entities.Common.Version;
 using System.Linq;
 
 namespace Project.Hub.Config.Util

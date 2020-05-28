@@ -1,4 +1,4 @@
-﻿using Project.Hub.Config.Entities.ComponentData;
+﻿using Project.Hub.Config.Entities.Common.Component;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Interfaces

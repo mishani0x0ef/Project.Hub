@@ -1,4 +1,4 @@
-﻿namespace Project.Hub.Config.Entities.v1
+﻿namespace Project.Hub.Config.Entities.Common
 {
     public enum DownloadType
     {

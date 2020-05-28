@@ -1,5 +1,5 @@
 ﻿using Project.Hub.Config.Interfaces;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;

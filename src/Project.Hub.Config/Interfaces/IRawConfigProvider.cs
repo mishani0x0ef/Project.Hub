@@ -1,4 +1,4 @@
-﻿using Project.Hub.Config.Entities;
+﻿using Project.Hub.Config.Entities.Common;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Interfaces

@@ -1,10 +1,10 @@
 ﻿using Project.Hub.Config.Interfaces;
-using Project.Hub.Config.Entities;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using System;
 using System.Linq;
+using Project.Hub.Config.Entities.Common;
 
 namespace Project.Hub.Config.Providers
 {

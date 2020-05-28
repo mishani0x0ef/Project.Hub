@@ -1,4 +1,4 @@
-﻿using Project.Hub.Config.Entities.Version;
+﻿using Project.Hub.Config.Entities.Common.Version;
 using System.Threading.Tasks;
 
 namespace Project.Hub.Config.Interfaces

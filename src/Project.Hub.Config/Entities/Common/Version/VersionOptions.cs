@@ -1,4 +1,4 @@
-﻿namespace Project.Hub.Config.Entities.Version
+﻿namespace Project.Hub.Config.Entities.Common.Version
 {
     public class VersionOptions
     {

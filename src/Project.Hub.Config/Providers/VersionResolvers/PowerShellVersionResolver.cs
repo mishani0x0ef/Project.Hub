@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using System.Management.Automation;
 using System.Linq;
 using System.Text;

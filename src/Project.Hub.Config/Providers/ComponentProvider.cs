@@ -1,10 +1,10 @@
 ﻿using Project.Hub.Config.Interfaces;
-using Project.Hub.Config.Entities.ComponentData;
+using Project.Hub.Config.Entities.Common.Component;
 using System.Threading.Tasks;
 using Project.Hub.Config.Util;
 using System.Collections.Generic;
 using System.Linq;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using Project.Hub.Config.Entities.v1;
 
 namespace Project.Hub.Config.Providers

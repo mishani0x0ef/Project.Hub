@@ -1,4 +1,4 @@
-﻿using Project.Hub.Config.Entities;
+﻿using Project.Hub.Config.Entities.Common;
 
 namespace Project.Hub.Models.Admin
 {

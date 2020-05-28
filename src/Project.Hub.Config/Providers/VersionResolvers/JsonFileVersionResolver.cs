@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using Newtonsoft.Json.Linq;
 using Project.Hub.Config.Interfaces;
 

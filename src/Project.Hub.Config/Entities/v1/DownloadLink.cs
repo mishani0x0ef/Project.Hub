@@ -1,4 +1,6 @@
-﻿namespace Project.Hub.Config.Entities.v1
+﻿using Project.Hub.Config.Entities.Common;
+
+namespace Project.Hub.Config.Entities.v1
 {
     public class DownloadLink : ComponentConfig
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Project.Hub.Config.Entities.ComponentData
+namespace Project.Hub.Config.Entities.Common.Component
 {
     public class EnvironmentDetails : BaseConfig
     {

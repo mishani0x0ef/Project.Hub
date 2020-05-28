@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Project.Hub.Config.Entities.Version
+namespace Project.Hub.Config.Entities.Common.Version
 {
     /// <summary>
     /// Describe versions profile of all environments.

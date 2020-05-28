@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Project.Hub.Config.Entities.Common;
+using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.v1
 {

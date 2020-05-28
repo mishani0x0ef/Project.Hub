@@ -1,6 +1,6 @@
 ﻿using Project.Hub.Config.Interfaces;
 using System;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Project.Hub.Config.Entities.Version;
+using Project.Hub.Config.Entities.Common.Version;
 using Microsoft.Extensions.Logging;
 
 namespace Project.Hub.Config.Providers.VersionResolvers

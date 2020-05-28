@@ -2,6 +2,7 @@
 using Project.Hub.Config.Interfaces;
 using System.Threading.Tasks;
 using Project.Hub.Config.Entities.v1;
+using Project.Hub.Config.Entities.Common;
 
 namespace Project.Hub.Config.Providers
 {
