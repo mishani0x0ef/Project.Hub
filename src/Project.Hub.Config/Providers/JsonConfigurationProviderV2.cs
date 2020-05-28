@@ -62,6 +62,7 @@ namespace Project.Hub.Config.Providers
                         Url = env.Url,
                         VersionOptions = env.VersionOptions,
                         ShowFavicon = true,
+                        Tags = site.Tags,
                     };
                 })
                 .ToList();
@@ -82,6 +83,7 @@ namespace Project.Hub.Config.Providers
                         Mode = download.Mode,
                         DownloadPath = env.DownloadPath,
                         VersionOptions = env.VersionOptions,
+                        Tags = download.Tags,
                     };
                 })
                 .ToList();

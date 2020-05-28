@@ -41,6 +41,7 @@
     {
       "Name": "GitHub link",
       "Description": "Could be link on any website. Click cause redirect.",
+      "Tags": [ "useful", "github-team" ],
       "Environments": [
         {
           "Environment": "Testing",
@@ -58,6 +59,7 @@
     {
       "Name": "Some API link",
       "Description": "Could be link on any API (or better - API's Swagger). Click cause redirect.",
+      "Tags": [ "security", "todo" ],
       "Environments": [
         {
           "Environment": "Testing",
@@ -75,6 +77,7 @@
     {
       "Name": "Download by link",
       "Description": "Download file using web link to this file.",
+      "Tags": [ "access" ],
       "Environments": [
         {
           "Environment": "Testing",
@@ -91,6 +94,7 @@
       "Description": "Link on *.rdp file that contain data about some remote connection.",
       "Type": "RemoteDesktop",
       "Mode": "FileSystem",
+      "Tags": [ "remote-access", "remote-access", "remote-access" ],
       "Environments": [
         {
           "Environment": "Testing",

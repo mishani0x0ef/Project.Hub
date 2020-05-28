@@ -44,6 +44,7 @@ namespace Project.Hub.Config.Providers
                 {
                     Name = component.Name,
                     Description = component.Description,
+                    Tags = component.Tags,
                 };
         }
 

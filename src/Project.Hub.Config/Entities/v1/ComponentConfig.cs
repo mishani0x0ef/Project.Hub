@@ -1,9 +1,15 @@
 ﻿using Project.Hub.Config.Entities.Version;
+using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.v1
 {
     public class ComponentConfig : BaseConfig
     {
+        /// <summary>
+        /// Collection of tags that can additionaly describe current item.
+        /// </summary>
+        public IEnumerable<string> Tags { get; set; }
+
         /// <summary>
         /// Describe component version resolution options.
         /// </summary>

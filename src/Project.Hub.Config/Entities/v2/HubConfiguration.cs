@@ -19,6 +19,14 @@ namespace Project.Hub.Config.Entities.v2
         string Environment { get; set; }
     }
 
+    public interface ITagged
+    {
+        /// <summary>
+        /// Collection of tags that can additionaly describe current item.
+        /// </summary>
+        IEnumerable<string> Tags { get; set; }
+    }
+
     public class WebsiteEnvironment : IEnvironmentable
     {
         public string Environment { get; set; }
@@ -33,10 +41,11 @@ namespace Project.Hub.Config.Entities.v2
         public VersionOptions VersionOptions { get; set; }
     }
 
-    public class EnvironmentalComponent<T> : BaseConfig where T : IEnvironmentable
+    public class EnvironmentalComponent<T> : BaseConfig, ITagged where T : IEnvironmentable
     {
         public string FaviconFallback { get; set; }
         public IEnumerable<T> Environments { get; set; }
+        public IEnumerable<string> Tags { get; set; }
     }
 
     public class Download : EnvironmentalComponent<DownloadEnvironment>

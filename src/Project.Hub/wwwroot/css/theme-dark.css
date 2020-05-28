@@ -78,3 +78,7 @@
 .theme-dark .panel-danger .panel-title {
     color: #e51c23;
 }
+
+.theme-dark .label-primary {
+    background-color: #444;
+}

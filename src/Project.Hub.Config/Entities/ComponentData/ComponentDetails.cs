@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Project.Hub.Config.Entities.v2;
+using System.Collections.Generic;
 
 namespace Project.Hub.Config.Entities.ComponentData
 {
-    public class ComponentDetails : BaseConfig
+    public class ComponentDetails : BaseConfig, ITagged
     {
         public HashSet<EnvironmentDetails> Environments { get; set; }
+        public IEnumerable<string> Tags { get; set; }
 
         public ComponentDetails()
         {

@@ -161,3 +161,8 @@ a.tile:hover {
     width: 1px;
     opacity: 0.3;
 }
+
+.tags {
+    overflow: hidden;
+    white-space: nowrap;
+}
