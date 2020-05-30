@@ -11,15 +11,15 @@ namespace Project.Hub.Config.Entities.Common.Search
         /// <summary>
         /// Text that was used for search.
         /// </summary>
-        public string SearchText { get; set; }
+        public string Query { get; set; }
 
         /// <summary>
-        /// Results that matches search text.
+        /// Results that matches search query.
         /// </summary>
         public HubConfiguration Results { get; set; }
 
         /// <summary>
-        /// Total count of results that match search text.
+        /// Total count of results that match search query.
         /// </summary>
         public int Count =>
             Results.Environments.Count()

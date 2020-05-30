@@ -15,14 +15,14 @@ namespace Project.Hub.Controllers
             _provider = provider;
         }
 
-        public async Task<IActionResult> Index(string searchText)
+        public async Task<IActionResult> Index(string query, bool isTag = false)
         {
             var config = await _provider.GetConfig();
-            var results = config.SearchFor(searchText);
+            var results = isTag ? config.SearchForTag(query) : config.SearchByQuery(query);
 
             return View(new SearchResults
             {
-                SearchText = searchText,
+                Query = isTag ? $"#{query}" : query,
                 Results = results,
             }); ;
         }

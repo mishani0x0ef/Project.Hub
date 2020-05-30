@@ -6,12 +6,12 @@ namespace Project.Hub.Config.Util
     public static class BaseConfigExtension
     {
         /// <summary>
-        /// Check if base configuration contains search text.
+        /// Check if base configuration contains search query.
         /// </summary>
         /// <param name="config">Configuration to check.</param>
-        /// <param name="searchText">Text to search for.</param>
-        /// <returns>True if configuration contains search text.</returns>
-        public static bool IsMatchSearch(this BaseConfig config, string searchText) =>
-            config != null && config.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0;
+        /// <param name="query">Text to search for.</param>
+        /// <returns>True if configuration contains search query.</returns>
+        public static bool IsMatchSearch(this BaseConfig config, string query) =>
+            config != null && config.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 }

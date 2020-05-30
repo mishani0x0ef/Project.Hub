@@ -93,27 +93,27 @@ namespace Project.Hub.Config.Util
         }
 
         /// <summary>
-        /// Search websites, downloads, environments that match searchText.
+        /// Search websites, downloads, environments that match query.
         /// </summary>
         /// <param name="config">Configuration to search.</param>
-        /// <param name="searchText">Text to search.</param>
-        public static HubConfiguration SearchFor(this Configuration config, string searchText)
+        /// <param name="query">Text to search.</param>
+        public static HubConfiguration SearchByQuery(this Configuration config, string query)
         {
             var seachResults = new HubConfiguration();
 
-            if (config != null && !string.IsNullOrWhiteSpace(searchText))
+            if (config != null && !string.IsNullOrWhiteSpace(query))
             {
                 // TODO: make this code more generic. MR
 
                 seachResults.Environments = config.Environments
-                    .Where(env => env.IsMatchSearch(searchText))
+                    .Where(env => env.IsMatchSearch(query))
                     .Select(env => new BaseConfig(env.Name, env.Description));
 
                 seachResults.Websites = config.Environments
                      .Select(env => env.Sites)
                      .SelectMany(site => site)
                      .DistinctBy(site => site.Name)
-                     .Where(site => site.IsMatchSearch(searchText))
+                     .Where(site => site.IsMatchSearch(query))
                      .Select(site => new EnvironmentalComponent<WebsiteEnvironment>
                      {
                          Name = site.Name,
@@ -126,7 +126,7 @@ namespace Project.Hub.Config.Util
                      .Select(env => env.Services)
                      .SelectMany(api => api)
                      .DistinctBy(api => api.Name)
-                     .Where(api => api.IsMatchSearch(searchText))
+                     .Where(api => api.IsMatchSearch(query))
                      .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
                      {
                          Name = api.Name,
@@ -139,7 +139,7 @@ namespace Project.Hub.Config.Util
                      .Select(env => env.Downloads)
                      .SelectMany(download => download)
                      .DistinctBy(download => download.Name)
-                     .Where(download => download.IsMatchSearch(searchText))
+                     .Where(download => download.IsMatchSearch(query))
                      .Select(download => new Download
                      {
                          Name = download.Name,
@@ -150,7 +150,74 @@ namespace Project.Hub.Config.Util
                      });
 
                 seachResults.CommonServices = config.SystemLinks
-                    .Where(site => site.IsMatchSearch(searchText))
+                    .Where(site => site.IsMatchSearch(query))
+                    .Select(site => new CommonWebsite
+                    {
+                        Name = site.Name,
+                        Description = site.Description,
+                        FaviconFallback = site.FaviconFallback,
+                        Url = site.Url
+                    });
+            }
+
+            return seachResults;
+        }
+
+        // <summary>
+        /// Search websites, downloads that contains specific tag.
+        /// </summary>
+        /// <param name="config">Configuration to search.</param>
+        /// <param name="tah">Tag to search.</param>
+        public static HubConfiguration SearchForTag(this Configuration config, string tag)
+        {
+            var seachResults = new HubConfiguration();
+
+            if (config != null && !string.IsNullOrWhiteSpace(tag))
+            {
+                // TODO: make this code more generic. MR
+
+                seachResults.Websites = config.Environments
+                     .Select(env => env.Sites)
+                     .SelectMany(site => site)
+                     .DistinctBy(site => site.Name)
+                     .Where(site => site.ContainsTag(tag))
+                     .Select(site => new EnvironmentalComponent<WebsiteEnvironment>
+                     {
+                         Name = site.Name,
+                         Description = site.Description,
+                         Tags = site.Tags,
+                         FaviconFallback = site.FaviconFallback,
+                     });
+
+                seachResults.Apis = config.Environments
+                     .Select(env => env.Services)
+                     .SelectMany(api => api)
+                     .DistinctBy(api => api.Name)
+                     .Where(api => api.ContainsTag(tag))
+                     .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
+                     {
+                         Name = api.Name,
+                         Description = api.Description,
+                         Tags = api.Tags,
+                         FaviconFallback = api.FaviconFallback,
+                     });
+
+                seachResults.Downloads = config.Environments
+                     .Select(env => env.Downloads)
+                     .SelectMany(download => download)
+                     .DistinctBy(download => download.Name)
+                     .Where(download => download.ContainsTag(tag))
+                     .Select(download => new Download
+                     {
+                         Name = download.Name,
+                         Description = download.Description,
+                         Tags = download.Tags,
+                         Mode = download.Mode,
+                         Type = download.Type,
+                     });
+
+                seachResults.CommonServices = config.SystemLinks
+                    .Where(site => site.ContainsTag(tag))
                     .Select(site => new CommonWebsite
                     {
                         Name = site.Name,

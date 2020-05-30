@@ -2,13 +2,13 @@
 @model Project.Hub.Config.Entities.v1.DownloadLink
 
 <div class="col-xs-12 col-sm-4 col-lg-3">
-    <a class="tile" href="@Url.GetDownloadLink(Model)" target="_blank">
+    <div class="tile" onclick="window.open('@Url.GetDownloadLink(Model)', '_blank')">
         <span class="glyphicon glyphicon-transfer pull-right"></span>
         <h5 class="text-primary">@Model.Name</h5>
         <div class="tile-content">
             <p>@Model.Description</p>
         </div>
         @Html.Partial("_Tags", Model.Tags)
-    </a>
+    </div>
 </div>
 

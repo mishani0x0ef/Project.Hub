@@ -12,7 +12,7 @@
             <div class="list-panel-content col-xs-12">
                 @foreach (var site in Model.OrderBy(s => s.Name))
                 {
-                    <a class="list-panel-item col-xs-12" href="@site.Url" target="_blank">
+                    <div class="list-panel-item col-xs-12" onclick="window.open('@site.Url', '_blank')">
                         <div class="col-xs-12 col-sm-3">
                             @if (!site.HasFavicon())
                             {
@@ -28,7 +28,7 @@
                             <span class="text-light">@site.Description</span>
                             @Html.Partial("_Tags", site.Tags)
                         </div>
-                    </a>
+                    </div>
                 }
             </div>
 

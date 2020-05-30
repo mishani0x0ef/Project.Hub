@@ -12,7 +12,7 @@
             <span>
                 @(Model.Count > 1 ? "results were" : "result was") found for
             </span>
-            <span class="label label-default">"@Model.SearchText"</span>
+            <span class="label label-default">"@Model.Query"</span>
         </p>
 
         @Html.Partial("_Environments", Model.Results.Environments)
@@ -23,7 +23,7 @@
     }
     else
     {
-        <p>No results were found for <span class="label label-default">"@Model.SearchText"</span></p>
+        <p>No results were found for <span class="label label-default">"@Model.Query"</span></p>
     }
 
 </div>

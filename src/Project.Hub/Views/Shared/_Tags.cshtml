@@ -5,8 +5,14 @@
     <div class="tags">
         @foreach (var tag in Model)
         {
-            <!-- TODO: provide link to search all similar tags. MR -->
-            <span class="label label-primary">#@tag</span>
+            <a class="label label-primary"
+               onclick="event.stopPropagation()"
+               asp-controller="Search" 
+               asp-action="" 
+               asp-route-query="@tag" 
+               asp-route-isTag="true">
+                #@tag
+            </a>
         }
     </div>
 }

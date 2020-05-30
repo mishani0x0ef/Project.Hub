@@ -5,7 +5,7 @@ namespace Project.Hub.Config.Entities.Common
     /// <summary>
     /// Define that implementer has tags.
     /// </summary>
-    interface ITagged
+    public interface ITagged
     {
         /// <summary>
         /// Collection of tags that describes current item.

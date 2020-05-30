@@ -12,7 +12,7 @@
             <div class="list-panel-content col-xs-12">
                 @foreach (var download in Model.OrderBy(s => s.Name))
                 {
-                    <a class="list-panel-item col-xs-12" href="@Url.GetDownloadLink(download)" target="_blank">
+                    <div class="list-panel-item col-xs-12" onclick="window.open('@Url.GetDownloadLink(download)', '_blank')">
                         <div class="col-xs-12 col-sm-3">
                             <span>@download.Name</span>
                         </div>
@@ -20,7 +20,7 @@
                             <span class="text-light">@download.Description</span>
                             @Html.Partial("_Tags", download.Tags)
                         </div>
-                    </a>
+                    </div>
                 }
             </div>
 
