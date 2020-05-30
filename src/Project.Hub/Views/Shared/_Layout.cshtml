@@ -18,13 +18,15 @@
         <link rel="stylesheet" href="~/css/bootstrap.paper.css" />
         <link rel="stylesheet" href="~/css/theme-dark.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/navbar.css" />
+        <link rel="stylesheet" href="~/css/search.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top app-navbar">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
@@ -44,6 +46,9 @@
                         <a asp-area="" asp-controller="Versions" asp-action="Index">Versions</a>
                     </li>
                 </ul>
+                <div class="hidden-xs app-navbar-search">
+                    @Html.Partial("_GlobalSearch")
+                </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a asp-area="" asp-controller="Home" asp-action="SwitchTheme">
@@ -52,7 +57,7 @@
                         </a>
                     </li>
                     <li>
-                        <p class="navbar-separator"></p>
+                        <p class="navbar-separator hidden-xs"></p>
                     </li>
                     <li>
                         <a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>

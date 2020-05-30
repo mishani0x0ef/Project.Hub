@@ -19,8 +19,7 @@ namespace Project.Hub.Config.Entities.Common.Component
 
         public override bool Equals(object obj)
         {
-            var env = obj as EnvironmentDetails;
-            return env != null && env.Name == Name;
+            return obj is EnvironmentDetails env && env.Name == Name;
         }
 
         public override int GetHashCode()
