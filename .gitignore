@@ -258,3 +258,11 @@ src/Project\.Hub/wwwroot/css/site\.min\.css
 src/Project\.Hub/wwwroot/css/code-editor\.min\.css
 
 src/Project\.Hub/wwwroot/js/admin\.min\.js
+
+src/Project.Hub/wwwroot/css/search.min.css
+
+src/Project.Hub/wwwroot/css/search.css
+
+src/Project.Hub/wwwroot/css/theme-dark.min.css
+
+src/Project.Hub/wwwroot/css/theme-dark.css

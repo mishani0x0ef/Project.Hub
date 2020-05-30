@@ -1,5 +1,5 @@
-﻿$app-search-background: rgba(255, 255, 255, 0.1);
-$app-search-background-hover: rgba(255, 255, 255, 0.4);
+﻿$app-search-background: rgba(0, 0, 0, 0.15);
+$app-search-background-hover: rgba(0, 0, 0, 0.3);
 
 .app-search {
     width: 100%;
@@ -28,6 +28,7 @@ $app-search-background-hover: rgba(255, 255, 255, 0.4);
 
     & .glyphicon {
         content: ' ';
+        color: #b2dbfb;
         left: 13px;
         opacity: 0.7;
         position: absolute;

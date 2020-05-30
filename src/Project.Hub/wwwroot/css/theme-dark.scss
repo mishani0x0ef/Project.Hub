@@ -7,6 +7,7 @@ $color-background: #121212;
 $color-navbar: #272727;
 $color-panel: #1c1c1c;
 $color-tile: #222;
+$color-label: #444;
 
 $color-border: #2a2a2a;
 
@@ -103,8 +104,16 @@ $color-font-link: #e0e0e0;
     }
 
     .label {
-        &-primary {
-            background-color: #444;
+        &-default {
+            background-color: $color-label;
         }
+
+        &-primary {
+            background-color: $color-label;
+        }
+    }
+
+    .badge {
+        background-color: $color-label;
     }
 }
