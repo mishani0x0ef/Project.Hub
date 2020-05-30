@@ -12,10 +12,6 @@
     "inputFile": "wwwroot/css/theme-dark.scss"
   },
   {
-    "outputFile": "wwwroot/css/variables.css",
-    "inputFile": "wwwroot/css/variables.scss"
-  },
-  {
     "outputFile": "wwwroot/css/code-editor.css",
     "inputFile": "wwwroot/css/code-editor.scss"
   },

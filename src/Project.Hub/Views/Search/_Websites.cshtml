@@ -1,0 +1,13 @@
+﻿@using Project.Hub.Config.Entities.Common
+
+@model IEnumerable<BaseConfig>
+
+@if (Model.Any())
+{
+    @Html.Partial("_SectionHeader", new BaseConfig("Websites"))
+
+    @foreach (var site in Model)
+    {
+        <p>@site.Name</p>
+    }
+}

@@ -1,7 +1,8 @@
 ﻿
-<form class="navbar-form navbar-left app-search" role="search">
+<form class="navbar-form navbar-left app-search" role="search" asp-area="" asp-controller="Search" asp-action="Index" method="get">
     <div class="form-group app-search-container">
         <span class="glyphicon glyphicon-search"></span>
-        <input type="text" class="form-control input-sm app-search-input" placeholder="Search for environment, website, download or hashtag...">
+        <input type="text" name="searchText" class="form-control input-sm app-search-input" placeholder="Search for environment, website, download or hashtag...">
+        <input type="submit" style="position: absolute; left: -9999px; visibility: hidden;" />
     </div>
 </form>

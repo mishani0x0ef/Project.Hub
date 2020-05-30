@@ -33,5 +33,14 @@ namespace Project.Hub.Config.Entities.v2
         /// List of all downloads that present on different environments.
         /// </summary>
         public IEnumerable<Download> Downloads { get; set; }
+
+        public HubConfiguration()
+        {
+            Environments = new List<BaseConfig>();
+            CommonServices = new List<CommonWebsite>();
+            Websites = new List<EnvironmentalComponent<WebsiteEnvironment>>();
+            Apis = new List<EnvironmentalComponent<WebsiteEnvironment>>();
+            Downloads = new List<Download>();
+        }
     }
 }

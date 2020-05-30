@@ -1,0 +1,14 @@
+﻿@using Project.Hub.Config.Entities.Common
+@using Project.Hub.Config.Entities.v2
+
+@model IEnumerable<CommonWebsite>
+
+@if (Model.Any())
+{
+    @Html.Partial("_SectionHeader", new BaseConfig("General Links"))
+
+    @foreach (var site in Model)
+    {
+        <p>@site.Name</p>
+    }
+}

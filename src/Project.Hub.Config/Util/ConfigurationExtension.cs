@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Project.Hub.Config.Entities.v1;
 using Project.Hub.Config.Entities.Common;
+using Project.Hub.Config.Entities.v2;
 
 namespace Project.Hub.Config.Util
 {
@@ -45,7 +46,7 @@ namespace Project.Hub.Config.Util
             }
             foreach (var download in environment.Downloads)
             {
-                if(download.Type != DownloadType.RemoteDesktop)
+                if (download.Type != DownloadType.RemoteDesktop)
                 {
                     yield return download;
                 }
@@ -89,6 +90,77 @@ namespace Project.Hub.Config.Util
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Search websites, downloads, environments that match searchText.
+        /// </summary>
+        /// <param name="config">Configuration to search.</param>
+        /// <param name="searchText">Text to search.</param>
+        public static HubConfiguration SearchFor(this Configuration config, string searchText)
+        {
+            var seachResults = new HubConfiguration();
+
+            if (config != null && !string.IsNullOrWhiteSpace(searchText))
+            {
+                // TODO: make this code more generic. MR
+
+                seachResults.Environments = config.Environments
+                    .Where(env => env.IsMatchSearch(searchText))
+                    .Select(env => new BaseConfig(env.Name, env.Description));
+
+                seachResults.Websites = config.Environments
+                     .Select(env => env.Sites)
+                     .SelectMany(site => site)
+                     .DistinctBy(site => site.Name)
+                     .Where(site => site.IsMatchSearch(searchText))
+                     .Select(site => new EnvironmentalComponent<WebsiteEnvironment>
+                     {
+                         Name = site.Name,
+                         Description = site.Description,
+                         Tags = site.Tags,
+                         FaviconFallback = site.FaviconFallback,
+                     });
+
+                seachResults.Apis = config.Environments
+                     .Select(env => env.Services)
+                     .SelectMany(api => api)
+                     .DistinctBy(api => api.Name)
+                     .Where(api => api.IsMatchSearch(searchText))
+                     .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
+                     {
+                         Name = api.Name,
+                         Description = api.Description,
+                         Tags = api.Tags,
+                         FaviconFallback = api.FaviconFallback,
+                     });
+
+                seachResults.Downloads = config.Environments
+                     .Select(env => env.Downloads)
+                     .SelectMany(download => download)
+                     .DistinctBy(download => download.Name)
+                     .Where(download => download.IsMatchSearch(searchText))
+                     .Select(download => new Download
+                     {
+                         Name = download.Name,
+                         Description = download.Description,
+                         Tags = download.Tags,
+                         Mode = download.Mode,
+                         Type = download.Type,
+                     });
+
+                seachResults.CommonServices = config.SystemLinks
+                    .Where(site => site.IsMatchSearch(searchText))
+                    .Select(site => new CommonWebsite
+                    {
+                        Name = site.Name,
+                        Description = site.Description,
+                        FaviconFallback = site.FaviconFallback,
+                        Url = site.Url
+                    });
+            }
+
+            return seachResults;
         }
     }
 }

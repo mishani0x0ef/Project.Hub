@@ -1,0 +1,13 @@
+﻿@using Project.Hub.Config.Entities.Common
+
+@model IEnumerable<BaseConfig>
+
+@if (Model.Any())
+{
+    @Html.Partial("_SectionHeader", new BaseConfig("Environments"))
+
+    @foreach (var env in Model)
+    {
+        @Html.Partial("_EnvironmentTile", env)
+    }
+}

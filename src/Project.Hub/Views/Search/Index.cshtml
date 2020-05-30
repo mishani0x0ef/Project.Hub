@@ -1,0 +1,28 @@
+﻿@using Project.Hub.Config.Entities.Common.Search
+
+@model SearchResults
+
+<div class="row">
+
+    @if (Model.HasResults)
+    {
+        <p>
+            <span class="badge">@Model.Count</span>
+            <span>
+                @(Model.Count > 1 ? "results were" : "result was") found for
+            </span>
+            <span class="label label-default">"@Model.SearchText"</span>
+        </p>
+
+        @Html.Partial("_Environments", Model.Results.Environments)
+        @Html.Partial("_Websites", Model.Results.Websites)
+        @Html.Partial("_Apis", Model.Results.Apis)
+        @Html.Partial("_Downloads", Model.Results.Downloads)
+        @Html.Partial("_CommonServices", Model.Results.CommonServices)
+    }
+    else
+    {
+        <p>No results were found for "@Model.SearchText"</p>
+    }
+
+</div>
