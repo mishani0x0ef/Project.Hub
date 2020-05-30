@@ -266,3 +266,7 @@ src/Project.Hub/wwwroot/css/search.css
 src/Project.Hub/wwwroot/css/theme-dark.min.css
 
 src/Project.Hub/wwwroot/css/theme-dark.css
+
+src/Project.Hub/wwwroot/css/navbar.css
+
+src/Project.Hub/wwwroot/css/navbar.min.css

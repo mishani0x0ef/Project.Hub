@@ -4,7 +4,7 @@
     var mode = Context.Request.Cookies[Theme.CookieKey] == Theme.Dark ? "Light Mode" : "Dark Mode";
 }
 
-<a asp-controller="Home" asp-action="SwitchTheme" title="Switch website theme to @mode.">
+<a class="app-theme-switcher" asp-controller="Home" asp-action="SwitchTheme" title="Switch website theme to @mode.">
     <span class="glyphicon glyphicon-adjust"></span>
-    <span>@mode</span>
+    <span class="hidden-xs hidden-sm">@mode</span>
 </a>

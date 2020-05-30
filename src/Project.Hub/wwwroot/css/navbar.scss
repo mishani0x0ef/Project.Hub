@@ -5,11 +5,43 @@
 
         & .app-navbar-search {
             flex-grow: 1;
+            flex-shrink: 1;
             text-align: center;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 767px) {
             flex-direction: column;
+
+            &:not(.in) {
+                display: none !important;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        &-xs {
+            display: flex !important;
+            align-items: center;
+            padding: 0 15px;
+
+            a, button {
+                color: #b2dbfb;
+            }
+
+            .app-theme-switcher {
+                margin: 0 7px;
+            }
+
+            .app-navbar-search {
+                flex-grow: 1;
+                flex-shrink: 1;
+                text-align: center;
+
+                .app-search {
+                    border: none;
+                    box-shadow: none;
+                }
+            }
         }
     }
 }

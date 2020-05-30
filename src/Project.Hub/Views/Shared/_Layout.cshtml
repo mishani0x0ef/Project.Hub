@@ -29,13 +29,16 @@
     <div class="navbar navbar-inverse navbar-fixed-top app-navbar">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Hub</a>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand hidden-xs">Hub</a>
+                <div class="visible-xs app-navbar-xs">
+                    <div class="app-navbar-search">
+                        @Html.Partial("_GlobalSearch")
+                    </div>
+                    @Html.Partial("ThemeSwitcher")
+                    <button type="button" class="navbar-toggle btn-lg collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </button>
+                </div>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -50,11 +53,11 @@
                     @Html.Partial("_GlobalSearch")
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <li class="hidden-xs">
                         @Html.Partial("ThemeSwitcher")
                     </li>
-                    <li>
-                        <p class="navbar-separator hidden-xs"></p>
+                    <li class="hidden-xs">
+                        <p class="navbar-separator"></p>
                     </li>
                     <li>
                         <a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
