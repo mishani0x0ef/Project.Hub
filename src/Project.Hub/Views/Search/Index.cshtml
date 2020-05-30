@@ -15,11 +15,21 @@
             <span class="label label-default">"@Model.Query"</span>
         </p>
 
-        @Html.Partial("_Environments", Model.Results.Environments)
-        @Html.Partial("_Components", ("Websites", Model.Results.Websites as IEnumerable<BaseConfig>))
-        @Html.Partial("_Components", ("APIs", Model.Results.Apis as IEnumerable<BaseConfig>))
-        @Html.Partial("_Components", ("Downloads", Model.Results.Downloads as IEnumerable<BaseConfig>))
-        @Html.Partial("_CommonServices", Model.Results.CommonServices)
+        <div class="app-search-reasults">
+            @Html.Partial("_Environments", Model.Results.Environments)
+            @Html.Partial("_Components", ("Websites", Model.Results.Websites as IEnumerable<BaseConfig>))
+            @Html.Partial("_Components", ("APIs", Model.Results.Apis as IEnumerable<BaseConfig>))
+            @Html.Partial("_Components", ("Downloads", Model.Results.Downloads as IEnumerable<BaseConfig>))
+            @Html.Partial("_CommonServices", Model.Results.CommonServices)
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            (function () {
+                var instance = new Mark(document.querySelectorAll('.app-search-reasults .app-search-result-items'));
+                instance.mark('@Model.Query');
+            })();
+        </script>
     }
     else
     {

@@ -12,7 +12,7 @@
 
             @Html.Partial("_ListHeader")
 
-            <div class="list-panel-content col-xs-12">
+            <div class="app-search-result-items list-panel-content col-xs-12">
                 @foreach (var site in Model.OrderBy(s => s.Name))
                 {
                     <a class="list-panel-item col-xs-12" href="@site.Url" target="_blank">

@@ -2,17 +2,22 @@
 
 @model ValueTuple<string, IEnumerable<BaseConfig>>
 
+@{
+    var sectionName = Model.Item1;
+    var components = Model.Item2;
+}
+
 @if (Model.Item2.Any())
 {
-    @Html.Partial("_SectionHeader", new BaseConfig(Model.Item1))
+    @Html.Partial("_SectionHeader", new BaseConfig(sectionName))
 
     <div class="row">
         <div class="list-panel col-xs-12">
 
             @Html.Partial("_ListHeader")
 
-            <div class="list-panel-content col-xs-12">
-                @foreach (var component in Model.Item2.OrderBy(s => s.Name))
+            <div class="app-search-result-items list-panel-content col-xs-12">
+                @foreach (var component in components.OrderBy(s => s.Name))
                 {
                     <a class="list-panel-item col-xs-12" asp-controller="Component" asp-route-id="@component.Name">
                         <div class="col-xs-12 col-sm-3">

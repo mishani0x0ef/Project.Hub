@@ -12,6 +12,9 @@ namespace Project.Hub.Config.Util
         /// <param name="query">Text to search for.</param>
         /// <returns>True if configuration contains search query.</returns>
         public static bool IsMatchSearch(this BaseConfig config, string query) =>
-            config != null && config.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
+            config != null && (
+                config.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+                || config.Description.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+            );
     }
 }

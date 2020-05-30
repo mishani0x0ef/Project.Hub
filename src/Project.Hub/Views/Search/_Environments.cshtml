@@ -6,8 +6,10 @@
 {
     @Html.Partial("_SectionHeader", new BaseConfig("Environments"))
 
-    @foreach (var env in Model)
-    {
-        @Html.Partial("_EnvironmentTile", env)
-    }
+    <div class="app-search-result-items">
+        @foreach (var env in Model)
+        {
+            @Html.Partial("_EnvironmentTile", env)
+        }
+    </div>
 }

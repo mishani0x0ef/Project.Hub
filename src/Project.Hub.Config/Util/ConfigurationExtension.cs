@@ -105,9 +105,9 @@ namespace Project.Hub.Config.Util
             {
                 bool nameMatch(BaseConfig site) => site.IsMatchSearch(query);
 
-                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchBy(nameMatch);
-                seachResults.Apis = config.Environments.Select(e => e.Services).SearchBy(nameMatch);
-                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchBy(nameMatch);
+                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchWith(nameMatch);
+                seachResults.Apis = config.Environments.Select(e => e.Services).SearchWith(nameMatch);
+                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchWith(nameMatch);
                 seachResults.CommonServices = config.SearchCommonWebsites(nameMatch);
                 seachResults.Environments = config.Environments
                     .Where(nameMatch)
@@ -130,9 +130,9 @@ namespace Project.Hub.Config.Util
             {
                 bool hasTag(ITagged site) => site.ContainsTag(tag);
 
-                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchBy(hasTag);
-                seachResults.Apis = config.Environments.Select(e => e.Services).SearchBy(hasTag);
-                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchBy(hasTag);
+                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchWith(hasTag);
+                seachResults.Apis = config.Environments.Select(e => e.Services).SearchWith(hasTag);
+                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchWith(hasTag);
                 seachResults.CommonServices = config.SearchCommonWebsites(hasTag);
             }
 
@@ -141,7 +141,7 @@ namespace Project.Hub.Config.Util
 
         private static bool CanSearch(this Configuration config, string query) => config != null && !string.IsNullOrWhiteSpace(query);
 
-        private static IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> SearchBy(
+        private static IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> SearchWith(
             this IEnumerable<IEnumerable<SiteLink>> sites,
             Func<SiteLink, bool> predicate)
         {
@@ -158,7 +158,7 @@ namespace Project.Hub.Config.Util
                 });
         }
 
-        private static IEnumerable<Download> SearchBy(
+        private static IEnumerable<Download> SearchWith(
             this IEnumerable<IEnumerable<DownloadLink>> downloads,
             Func<DownloadLink, bool> predicate)
         {
