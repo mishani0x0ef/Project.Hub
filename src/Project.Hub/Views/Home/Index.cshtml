@@ -10,7 +10,7 @@
     ViewData["Title"] = AppConfiguration.Value.AppDisplayName;
 }
 
-@Html.Partial("_SectionHeader", new BaseConfig("Environments", "Select environment which you want to explore."))
+@Html.Partial("_SectionHeader", new BaseConfig("Environments", "Select the environment you want to explore."))
 
 <div class="row">
     @foreach (var environment in Model.Environments)
@@ -19,5 +19,5 @@
     }
 </div>
 
-@Html.Partial("_SectionHeader", new BaseConfig("General Links", "General links to services that not related to environments."))
+@Html.Partial("_SectionHeader", new BaseConfig("General Links", "General links to services that are not related to any environments."))
 @Html.Partial("_LinksPanel", Model.SystemLinks)

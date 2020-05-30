@@ -51,10 +51,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a asp-area="" asp-controller="Home" asp-action="SwitchTheme">
-                            <span class="glyphicon glyphicon-adjust"></span>
-                            <span>Switch Theme</span>
-                        </a>
+                        @Html.Partial("ThemeSwitcher")
                     </li>
                     <li>
                         <p class="navbar-separator hidden-xs"></p>
