@@ -28,6 +28,7 @@ namespace Project.Hub
             ConfigureAuth(services);
             ConfigureDependencyInjection(services);
             services.AddMvc();
+            services.AddResponseCompression();
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
         }
 
@@ -45,6 +46,7 @@ namespace Project.Hub
             }
 
             app
+                .UseResponseCompression()
                 .UseStaticFiles()
                 .UseAuthentication()
                 .UseMvc(routes =>
