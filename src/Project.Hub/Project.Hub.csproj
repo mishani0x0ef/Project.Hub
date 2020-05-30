@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="scripts\installnetcore.ps1" />
   </ItemGroup>
 
@@ -50,6 +54,10 @@
 
   <ItemGroup>
     <Folder Include="Views\Component\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 </Project>

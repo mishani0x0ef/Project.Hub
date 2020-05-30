@@ -1,0 +1,26 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/search.css",
+    "inputFile": "wwwroot/css/search.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/navbar.css",
+    "inputFile": "wwwroot/css/navbar.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/theme-dark.css",
+    "inputFile": "wwwroot/css/theme-dark.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/variables.css",
+    "inputFile": "wwwroot/css/variables.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/code-editor.css",
+    "inputFile": "wwwroot/css/code-editor.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "wwwroot/css/site.scss"
+  }
+]

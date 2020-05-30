@@ -1,0 +1,15 @@
+﻿.app-navbar {
+
+    .navbar-collapse {
+        display: flex !important;
+
+        & .app-navbar-search {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        @media (max-width: 991px) {
+            flex-direction: column;
+        }
+    }
+}

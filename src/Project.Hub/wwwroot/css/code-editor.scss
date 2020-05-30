@@ -1,0 +1,54 @@
+﻿.editor-container {
+    position: relative;
+    height: 500px;
+
+    &.full-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1050;
+
+        .btn {
+            &-expand {
+                display: none;
+            }
+
+            &-collapse {
+                display: block;
+            }
+        }
+    }
+
+    .btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1100;
+
+        &-expand {
+            display: block;
+        }
+
+        &-collapse {
+            display: none;
+        }
+    }
+
+    .editor-content {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.code-editor .alert {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logs-editor .save-widgets {
+    display: none;
+}

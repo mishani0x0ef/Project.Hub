@@ -1,0 +1,110 @@
+﻿$color-primary: #1b92f0;
+$color-warning: #ff9800;
+$color-danger: #e51c23;
+$color-transparent: rgba(0, 0, 0, 0);
+
+$color-background: #121212;
+$color-navbar: #272727;
+$color-panel: #1c1c1c;
+$color-tile: #222;
+
+$color-border: #2a2a2a;
+
+$color-font-default: #aaa;
+$color-font-link: #e0e0e0;
+
+.theme-dark {
+    background-color: $color-background;
+    color: $color-font-default;
+
+    body {
+        background-color: $color-background;
+        color: $color-font-default;
+    }
+
+    h1, & h2, & h3, & h4, & h5 {
+        color: $color-font-link;
+    }
+
+    .table > tbody > tr > td,
+    .table > thead > tr > th,
+    hr {
+        border-color: $color-border;
+    }
+
+    .navbar {
+        background-color: $color-navbar;
+
+        &-separator {
+            opacity: 0.1;
+        }
+    }
+
+    .tile {
+        background-color: $color-panel;
+        border-color: $color-border;
+
+        &:hover {
+            background-color: $color-tile;
+            cursor: pointer;
+        }
+    }
+
+    .list-panel {
+        &-content {
+            background-color: $color-panel;
+            border-color: $color-border;
+        }
+
+        &-item {
+            border-color: $color-border;
+
+            &:hover {
+                background-color: $color-tile;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .btn {
+        &-primary {
+            color: $color-primary;
+            border: 1px solid $color-primary;
+            background-color: $color-transparent;
+
+            &:focus:active {
+                background-color: $color-transparent;
+            }
+        }
+
+        &-link:hover {
+            background-color: $color-tile;
+        }
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: $color-panel;
+    }
+
+    .panel {
+        background-color: $color-panel;
+
+        &-heading {
+            background-color: $color-navbar;
+        }
+
+        &-warning .panel-title {
+            color: $color-warning;
+        }
+
+        &-danger .panel-title {
+            color: $color-danger;
+        }
+    }
+
+    .label {
+        &-primary {
+            background-color: #444;
+        }
+    }
+}
