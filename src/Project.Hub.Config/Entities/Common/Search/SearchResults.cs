@@ -25,7 +25,8 @@ namespace Project.Hub.Config.Entities.Common.Search
             Results.Environments.Count()
             + Results.Websites.Count()
             + Results.Apis.Count()
-            + Results.Downloads.Count();
+            + Results.Downloads.Count()
+            + Results.CommonServices.Count();
 
         /// <summary>
         /// Define if search has any results.
