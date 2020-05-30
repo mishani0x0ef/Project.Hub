@@ -101,63 +101,17 @@ namespace Project.Hub.Config.Util
         {
             var seachResults = new HubConfiguration();
 
-            if (config != null && !string.IsNullOrWhiteSpace(query))
+            if (config.CanSearch(query))
             {
-                // TODO: make this code more generic. MR
+                bool nameMatch(BaseConfig site) => site.IsMatchSearch(query);
 
+                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchBy(nameMatch);
+                seachResults.Apis = config.Environments.Select(e => e.Services).SearchBy(nameMatch);
+                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchBy(nameMatch);
+                seachResults.CommonServices = config.SearchCommonWebsites(nameMatch);
                 seachResults.Environments = config.Environments
-                    .Where(env => env.IsMatchSearch(query))
+                    .Where(nameMatch)
                     .Select(env => new BaseConfig(env.Name, env.Description));
-
-                seachResults.Websites = config.Environments
-                     .Select(env => env.Sites)
-                     .SelectMany(site => site)
-                     .DistinctBy(site => site.Name)
-                     .Where(site => site.IsMatchSearch(query))
-                     .Select(site => new EnvironmentalComponent<WebsiteEnvironment>
-                     {
-                         Name = site.Name,
-                         Description = site.Description,
-                         Tags = site.Tags,
-                         FaviconFallback = site.FaviconFallback,
-                     });
-
-                seachResults.Apis = config.Environments
-                     .Select(env => env.Services)
-                     .SelectMany(api => api)
-                     .DistinctBy(api => api.Name)
-                     .Where(api => api.IsMatchSearch(query))
-                     .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
-                     {
-                         Name = api.Name,
-                         Description = api.Description,
-                         Tags = api.Tags,
-                         FaviconFallback = api.FaviconFallback,
-                     });
-
-                seachResults.Downloads = config.Environments
-                     .Select(env => env.Downloads)
-                     .SelectMany(download => download)
-                     .DistinctBy(download => download.Name)
-                     .Where(download => download.IsMatchSearch(query))
-                     .Select(download => new Download
-                     {
-                         Name = download.Name,
-                         Description = download.Description,
-                         Tags = download.Tags,
-                         Mode = download.Mode,
-                         Type = download.Type,
-                     });
-
-                seachResults.CommonServices = config.SystemLinks
-                    .Where(site => site.IsMatchSearch(query))
-                    .Select(site => new CommonWebsite
-                    {
-                        Name = site.Name,
-                        Description = site.Description,
-                        FaviconFallback = site.FaviconFallback,
-                        Url = site.Url
-                    });
             }
 
             return seachResults;
@@ -172,62 +126,67 @@ namespace Project.Hub.Config.Util
         {
             var seachResults = new HubConfiguration();
 
-            if (config != null && !string.IsNullOrWhiteSpace(tag))
+            if (config.CanSearch(tag))
             {
-                // TODO: make this code more generic. MR
+                bool hasTag(ITagged site) => site.ContainsTag(tag);
 
-                seachResults.Websites = config.Environments
-                     .Select(env => env.Sites)
-                     .SelectMany(site => site)
-                     .DistinctBy(site => site.Name)
-                     .Where(site => site.ContainsTag(tag))
-                     .Select(site => new EnvironmentalComponent<WebsiteEnvironment>
-                     {
-                         Name = site.Name,
-                         Description = site.Description,
-                         Tags = site.Tags,
-                         FaviconFallback = site.FaviconFallback,
-                     });
-
-                seachResults.Apis = config.Environments
-                     .Select(env => env.Services)
-                     .SelectMany(api => api)
-                     .DistinctBy(api => api.Name)
-                     .Where(api => api.ContainsTag(tag))
-                     .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
-                     {
-                         Name = api.Name,
-                         Description = api.Description,
-                         Tags = api.Tags,
-                         FaviconFallback = api.FaviconFallback,
-                     });
-
-                seachResults.Downloads = config.Environments
-                     .Select(env => env.Downloads)
-                     .SelectMany(download => download)
-                     .DistinctBy(download => download.Name)
-                     .Where(download => download.ContainsTag(tag))
-                     .Select(download => new Download
-                     {
-                         Name = download.Name,
-                         Description = download.Description,
-                         Tags = download.Tags,
-                         Mode = download.Mode,
-                         Type = download.Type,
-                     });
-
-                seachResults.CommonServices = config.SystemLinks
-                    .Where(site => site.ContainsTag(tag))
-                    .Select(site => new CommonWebsite
-                    {
-                        Name = site.Name,
-                        Description = site.Description,
-                        FaviconFallback = site.FaviconFallback,
-                        Url = site.Url
-                    });
+                seachResults.Websites = config.Environments.Select(e => e.Sites).SearchBy(hasTag);
+                seachResults.Apis = config.Environments.Select(e => e.Services).SearchBy(hasTag);
+                seachResults.Downloads = config.Environments.Select(e => e.Downloads).SearchBy(hasTag);
+                seachResults.CommonServices = config.SearchCommonWebsites(hasTag);
             }
 
             return seachResults;
+        }
+
+        private static bool CanSearch(this Configuration config, string query) => config != null && !string.IsNullOrWhiteSpace(query);
+
+        private static IEnumerable<EnvironmentalComponent<WebsiteEnvironment>> SearchBy(
+            this IEnumerable<IEnumerable<SiteLink>> sites,
+            Func<SiteLink, bool> predicate)
+        {
+            return sites
+                .SelectMany(site => site)
+                .DistinctBy(site => site.Name)
+                .Where(predicate)
+                .Select(api => new EnvironmentalComponent<WebsiteEnvironment>
+                {
+                    Name = api.Name,
+                    Description = api.Description,
+                    Tags = api.Tags,
+                    FaviconFallback = api.FaviconFallback,
+                });
+        }
+
+        private static IEnumerable<Download> SearchBy(
+            this IEnumerable<IEnumerable<DownloadLink>> downloads,
+            Func<DownloadLink, bool> predicate)
+        {
+            return downloads
+                .SelectMany(download => download)
+                .DistinctBy(download => download.Name)
+                .Where(predicate)
+                .Select(download => new Download
+                {
+                    Name = download.Name,
+                    Description = download.Description,
+                    Tags = download.Tags,
+                    Mode = download.Mode,
+                    Type = download.Type,
+                });
+        }
+
+        private static IEnumerable<CommonWebsite> SearchCommonWebsites(this Configuration config, Func<SiteLink, bool> predicate)
+        {
+            return config.SystemLinks
+                .Where(predicate)
+                .Select(site => new CommonWebsite
+                {
+                    Name = site.Name,
+                    Description = site.Description,
+                    FaviconFallback = site.FaviconFallback,
+                    Url = site.Url
+                });
         }
     }
 }
