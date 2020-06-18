@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Project.Hub.Config.Entities.v1;
 using Project.Hub.Config.Entities.Common;
 using Project.Hub.Config.Entities.v2;
+using Project.Hub.Config.Entities.Common.Search;
 
 namespace Project.Hub.Config.Util
 {
@@ -97,7 +98,7 @@ namespace Project.Hub.Config.Util
         /// </summary>
         /// <param name="config">Configuration to search.</param>
         /// <param name="query">Text to search.</param>
-        public static HubConfiguration SearchByQuery(this Configuration config, string query)
+        public static SearchResults SearchByQuery(this Configuration config, string query)
         {
             var seachResults = new HubConfiguration();
 
@@ -114,7 +115,11 @@ namespace Project.Hub.Config.Util
                     .Select(env => new BaseConfig(env.Name, env.Description));
             }
 
-            return seachResults;
+            return new SearchResults
+            {
+                Query = query,
+                Results = seachResults,
+            };
         }
 
         // <summary>
@@ -122,7 +127,7 @@ namespace Project.Hub.Config.Util
         /// </summary>
         /// <param name="config">Configuration to search.</param>
         /// <param name="tah">Tag to search.</param>
-        public static HubConfiguration SearchForTag(this Configuration config, string tag)
+        public static SearchResults SearchForTag(this Configuration config, string tag)
         {
             var seachResults = new HubConfiguration();
 
@@ -136,7 +141,11 @@ namespace Project.Hub.Config.Util
                 seachResults.CommonServices = config.SearchCommonWebsites(hasTag);
             }
 
-            return seachResults;
+            return new SearchResults
+            {
+                Query = $"#{tag}",
+                Results = seachResults,
+            };
         }
 
         private static bool CanSearch(this Configuration config, string query) => config != null && !string.IsNullOrWhiteSpace(query);
