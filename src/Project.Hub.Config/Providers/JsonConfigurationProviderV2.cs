@@ -44,7 +44,8 @@ namespace Project.Hub.Config.Providers
         {
             return new SiteLink(website.Name, website.Url, website.Description)
             {
-                ShowFavicon = true
+                ShowFavicon = true,
+                FaviconFallback = website.FaviconFallback,
             };
         }
 
@@ -62,6 +63,7 @@ namespace Project.Hub.Config.Providers
                         Url = env.Url,
                         VersionOptions = env.VersionOptions,
                         ShowFavicon = true,
+                        FaviconFallback = site.FaviconFallback,
                         Tags = site.Tags,
                     };
                 })
