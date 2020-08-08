@@ -1,6 +1,20 @@
 {
   "Version": "2.0",
 
+  "CommonServices": [
+    {
+      "Name": "GitHub",
+      "Description": "Link to the project on the GitHub.",
+      "Url": "https://github.com/mishani0x0ef/Project.Hub"
+    },
+    {
+      "Name": "Google Analytics",
+      "Description": "Link to the project's analytics.",
+      "Url": "https://analytics.google.com",
+      "FaviconFallback": "https://cdn0.iconfinder.com/data/icons/icocentre-free-icons/171/f-analytics2_128-512.png"
+    }
+  ],
+
   "Environments": [
     {
       "Name": "Testing",
@@ -12,35 +26,10 @@
     }
   ],
 
-  "CommonServices": [
-    {
-      "Name": "GitHub",
-      "Description": "Link to project's GitHub.",
-      "Url": "https://github.com/mishani0x0ef/Project.Hub"
-    },
-    {
-      "Name": "Latest Release",
-      "Description": "Link on page with prject releases.",
-      "Url": "https://github.com/mishani0x0ef/Project.Hub/releases"
-    },
-    {
-      "Name": "Fallback favicon",
-      "Description": "Fallback favicon used.",
-      "Url": "https://analytics.google.com",
-      "FaviconFallback": "https://cdn.iconscout.com/icon/free/png-256/google-analytics-7-722699.png"
-    },
-    {
-      "Name": "Invalid Fallback favicon",
-      "Description": "Fallback favicon used.",
-      "Url": "https://analytics.google.com",
-      "FaviconFallback": "https://dontexists"
-    }
-  ],
-
   "Websites": [
     {
-      "Name": "GitHub link",
-      "Description": "Could be link on any website. Click cause redirect.",
+      "Name": "GitHub",
+      "Description": "Could be a link to any website. Click causing redirect.",
       "Tags": [ "useful", "github-team" ],
       "Environments": [
         {
@@ -57,17 +46,17 @@
 
   "Apis": [
     {
-      "Name": "Some API link",
-      "Description": "Could be link on any API (or better - API's Swagger). Click cause redirect.",
-      "Tags": [ "security", "todo" ],
+      "Name": "GitHub API",
+      "Description": "Could be link to any API (I suggest you Swagger-link). Click causing redirect.",
+      "Tags": [ "security", "github-team" ],
       "Environments": [
         {
           "Environment": "Testing",
-          "Url": "https://github.com"
+          "Url": "https://docs.github.com/en/graphql"
         },
         {
           "Environment": "Production",
-          "Url": "https://github.com"
+          "Url": "https://docs.github.com/en/graphql"
         }
       ]
     }
@@ -75,34 +64,41 @@
 
   "Downloads": [
     {
-      "Name": "Download by link",
-      "Description": "Download file using web link to this file.",
-      "Tags": [ "access" ],
+      "Name": "Visual Studio",
+      "Description": "Download file using web-link to this file.",
+      "Tags": [ "desktop" ],
       "Environments": [
         {
           "Environment": "Testing",
-          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf"
+          "DownloadPath": "https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&rel=16"
         },
         {
           "Environment": "Production",
-          "DownloadPath": "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf"
+          "DownloadPath": "https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&rel=16"
         }
       ]
     },
     {
-      "Name": "Download remote desktop file",
-      "Description": "Link on *.rdp file that contain data about some remote connection.",
-      "Type": "RemoteDesktop",
+      "Name": "Hub Configuration",
+      "Description": "Download file from file system.",
       "Mode": "FileSystem",
-      "Tags": [ "remote-access", "remote-access", "remote-access" ],
+      "Tags": [ "file-system", "desktop", "github-team" ],
       "Environments": [
         {
           "Environment": "Testing",
-          "DownloadPath": "C:\\temp\\testEnvironment.rdp"
+          "DownloadPath": ".\\hub.config.json",
+          "VersionOptions": {
+            "Type": "Assembly",
+            "Path": ".\\Project.Hub.dll"
+          }
         },
         {
           "Environment": "Production",
-          "DownloadPath": "C:\\temp\\testEnvironment.rdp"
+          "DownloadPath": ".\\hub.config.json",
+          "VersionOptions": {
+            "Type": "Assembly",
+            "Path": ".\\Project.Hub.Config.dll"
+          }
         }
       ]
     }
