@@ -11,16 +11,8 @@ namespace Project.Hub.Config.Util
         /// </summary>
         public static ComponentVersion GetEnvironmentVersionOrDefault(this Component component, string environment, string defaultVersion = "-")
         {
-            var defaultComponentVersion = new ComponentVersion { EnvironmentName = environment, Version = defaultVersion };
-
-            var componentVersionsInvalid = component == null || component.Versions == null || !component.Versions.Any();
-            if (componentVersionsInvalid || string.IsNullOrWhiteSpace(environment))
-            {
-                return defaultComponentVersion;
-            }
-
-            var componentVersion = component.Versions.FirstOrDefault(v => v.EnvironmentName == environment);
-            return componentVersion ?? defaultComponentVersion;
+            var version = component?.Versions?.FirstOrDefault(v => v.EnvironmentName == environment);
+            return version ?? new ComponentVersion { EnvironmentName = environment, Version = defaultVersion };
         }
     }
 }

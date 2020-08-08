@@ -38,7 +38,7 @@ namespace Project.Hub.Controllers
         public async Task SaveHubConfig([FromBody] string config)
         {
             await _configProvider.UpdateHubConfig(config);
-            // clear cache to make all data refresh after config change.
+            // clear cache to force data refresh after config change.
             _cache.Clear();
         }
 

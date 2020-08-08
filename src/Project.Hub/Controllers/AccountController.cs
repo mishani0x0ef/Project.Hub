@@ -43,8 +43,8 @@ namespace Project.Hub.Controllers
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(
                     model.Username,
-                    model.Password, 
-                    model.RememberMe, 
+                    model.Password,
+                    model.RememberMe,
                     lockoutOnFailure: false);
 
                 if (result.Succeeded)
@@ -74,14 +74,9 @@ namespace Project.Hub.Controllers
 
         private IActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
+            return Url.IsLocalUrl(returnUrl)
+                ? (IActionResult)Redirect(returnUrl)
+                : RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         #endregion

@@ -5,7 +5,7 @@ namespace Common.Cache
     public interface ICache : IMemoryCache
     {
         /// <summary>
-        /// Remove all cahce entries.
+        /// Remove all cache entries.
         /// </summary>
         void Clear();
     }

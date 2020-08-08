@@ -5,10 +5,10 @@ namespace Common.File
     public static class AssemblyUtils
     {
         /// <summary>
-        /// Get version from .net assembly (dll or exe).
+        /// Get version from .NET assembly (dll or exe).
         /// </summary>
         /// <param name="pathToAssembly">Full or relative path to the assembly file.</param>
-        /// <returns></returns>
+        /// <returns>String representation of the version.</returns>
         public static string GetVersion(string pathToAssembly)
         {
             var assembly = Assembly.LoadFile(pathToAssembly);
@@ -17,7 +17,7 @@ namespace Common.File
         }
 
         /// <summary>
-        /// Try to get version from .net assembly (dll or exe).
+        /// Try to get version from .NET assembly (dll or exe).
         /// </summary>
         /// <param name="pathToAssembly">Full or relative path to the assembly file.</param>
         /// <param name="version">Version of assembly.</param>

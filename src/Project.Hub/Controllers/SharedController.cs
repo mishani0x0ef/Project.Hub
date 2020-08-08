@@ -55,8 +55,11 @@ namespace Project.Hub.Controllers
 
         private DirectoryInfo GetNextDir(DirectoryInfo current, string nextDirPattern)
         {
-            var dirs = current.GetDirectories(nextDirPattern);
-            var dir = dirs.OrderBy(d => d.CreationTime).Last();
+            var dir = current
+                .GetDirectories(nextDirPattern)
+                .OrderBy(d => d.CreationTime)
+                .Last();
+
             return dir;
         }
     }

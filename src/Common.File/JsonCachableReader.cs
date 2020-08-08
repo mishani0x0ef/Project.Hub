@@ -4,12 +4,17 @@ using System.Threading.Tasks;
 
 namespace Common.File
 {
+    /// <summary>
+    /// Provide ability to read JSON file and cache results.
+    /// If file wasn't changed - use cached results to optimize performance.
+    /// </summary>
+    /// <typeparam name="T">Type of the object to read from JSON file.</typeparam>
     public class JsonCachableReader<T>
     {
         private readonly string _path;
 
-        private DateTime lastReload = DateTime.MinValue;
-        private T config;
+        private DateTime _lastReload = DateTime.MinValue;
+        private T _content;
 
         public JsonCachableReader(string jsonPath)
         {
@@ -18,23 +23,20 @@ namespace Common.File
 
         protected async Task<T> GetOrResolveIfChanged()
         {
-            var configChanged = FileUtil.IsFileChangedSince(lastReload, _path);
+            var configChanged = FileUtil.IsFileChangedSince(_lastReload, _path);
 
             if (configChanged)
             {
-                lastReload = DateTime.Now;
-
-                string jsonConfig;
+                _lastReload = DateTime.Now;
 
                 using (var reader = System.IO.File.OpenText(_path))
                 {
-                    jsonConfig = await reader.ReadToEndAsync();
+                    var json = await reader.ReadToEndAsync();
+                    _content = JsonConvert.DeserializeObject<T>(json);
                 }
-
-                config = JsonConvert.DeserializeObject<T>(jsonConfig);
             }
 
-            return config;
+            return _content;
         }
     }
 }

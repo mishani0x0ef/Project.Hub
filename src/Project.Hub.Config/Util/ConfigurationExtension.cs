@@ -18,9 +18,7 @@ namespace Project.Hub.Config.Util
         /// <returns>Info about specific environment.</returns>
         public static EnvironmentConfig GetEnvironment(this Configuration config, string name)
         {
-            return
-                config?.Environments.FirstOrDefault(
-                    e => string.Equals(e.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            return config?.Environments.FirstOrDefault(e => e.Name.EqualsIgnoreCase(name));
         }
 
         /// <summary>
@@ -31,9 +29,7 @@ namespace Project.Hub.Config.Util
         /// <returns>Info about the specific download for current environment.</returns>
         public static DownloadLink GetDownloadLink(this EnvironmentConfig environment, string name)
         {
-            return
-                environment?.Downloads.FirstOrDefault(
-                    d => string.Equals(d.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            return environment?.Downloads.FirstOrDefault(e => e.Name.EqualsIgnoreCase(name));
         }
 
         /// <summary>
