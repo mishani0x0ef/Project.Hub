@@ -4,6 +4,10 @@
 # Project.Hub
 A web-based application that allows you to describe useful links and downloads for your project and have nice visual representation for them.
 
+<p align="center">
+  <img width="600" height="385" src="https://github.com/mishani0x0ef/Project.Hub/blob/master/resources/demo.gif">
+</p>
+
 ## Setup
 
 `Project.Hub` is a web application that can be hosted on any hosting environment which is supported by [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/).
